@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard Ruangan</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+  <style>
+    body {
+      font-family: 'Roboto', sans-serif;
+      background: #f4f4f4;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background: #2980b9;
+      color: white;
+      padding: 1rem;
+      text-align: center;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+    .content {
+      padding: 1rem;
+      margin-top: 80px;
+    }
+    .container {
+      display: grid;
+      grid-template-columns: 1.2fr 1.8fr 1.2fr;
+      gap: 0.2rem;
+      align-items: start;
+    }
+    .card {
+      background: white;
+      border-radius: 8px;
+      padding: 1.2rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      text-align: center;
+    }
+    .card h3 {
+      margin-top: 0;
+      margin-bottom: 1rem;
+      border-bottom: 2px solid #ddd;
+      padding-bottom: 0.5rem;
+      font-size: 1.4rem;
+      color: #5dade2;
+    }
+    .status {
+      padding: 6px 12px;
+      border-radius: 12px;
+      font-size: 0.95rem;
+      font-weight: bold;
+      text-transform: capitalize;
+    }
+    .status.tersedia {
+      background: #27ae60;
+      color: white;
+    }
+    .status.terpakai {
+      background: #e74c3c;
+      color: white;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1.2rem;
+      background: white;
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.05);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    th, td {
+      padding: 14px 16px;
+      text-align: center;
+    }
+    th {
+      background: #2980b9;
+      color: white;
+      font-weight: bold;
+    }
+    tr:nth-child(even) {
+      background-color: #f9f9f9;
+    }
+    tr:hover {
+      background-color: #eef6ff;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Dashboard Ruangan</h1>
+  </header>
+  <div class="content">
+    <div class="container">
+      <div class="card">
+        <h3>Status Ruangan</h3>
+        <div id="daftarRuangan"></div>
+      </div>
+      <div class="card table-card" style="margin-left: -1.2rem">
+        <h3>Jadwal Saat Ini</h3>
+        <table id="jadwalTable">
+          <thead>
+            <tr>
+              <th>Ruangan</th><th>Mata Kuliah</th><th>Dosen</th><th>Jam</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Ruang 101</td><td>Matematika</td><td>Bu Siti</td><td>08:00 - 10:00</td></tr>
+            <tr><td>Ruang 102</td><td>Pemrograman</td><td>Pak Arif</td><td>10:00 - 12:00</td></tr>
+            <tr><td>Ruang 103</td><td>Fisika</td><td>Pak Joko</td><td>12:00 - 14:00</td></tr>
+            <tr><td>Ruang 104</td><td>Kimia</td><td>Bu Indah</td><td>14:00 - 16:00</td></tr>
+            <tr><td>Ruang 105</td><td>Ekonomi</td><td>Pak Udin</td><td>16:00 - 18:00</td></tr>
+            <tr><td>Ruang 106</td><td>Biologi</td><td>Bu Wulan</td><td>08:00 - 10:00</td></tr>
+            <tr><td>Ruang 107</td><td>Geografi</td><td>Pak Budi</td><td>10:00 - 12:00</td></tr>
+            <tr><td>Ruang 108</td><td>Sejarah</td><td>Bu Aisyah</td><td>12:00 - 14:00</td></tr>
+            <tr><td>Ruang 109</td><td>Bahasa Inggris</td><td>Pak Surya</td><td>14:00 - 16:00</td></tr>
+            <tr><td>Ruang 110</td><td>Sosiologi</td><td>Bu Rina</td><td>16:00 - 18:00</td></tr>
+            <tr><td>Ruang 111</td><td>Psikologi</td><td>Pak Iwan</td><td>08:00 - 10:00</td></tr>
+            <tr><td>Ruang 112</td><td>Filsafat</td><td>Bu Anita</td><td>10:00 - 12:00</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="card">
+        <h3>Statistik Penggunaan</h3>
+        <canvas id="ruangChart" height="200"></canvas>
+      </div>
+    </div>
+  </div>
+  <script>
+    const ruangStatusData = [];
+    const ruangDiv = document.getElementById('daftarRuangan');
+    const statusOptions = ['tersedia', 'terpakai'];
+    let daftarHTML = '';
+    for (let i = 1; i <= 12; i++) {
+      const status = statusOptions[Math.floor(Math.random() * statusOptions.length)];
+      ruangStatusData.push(status);
+      daftarHTML += `<p data-status="${status}">Ruang ${100 + i}: <span class="status ${status}">${status}</span></p>`;
+    }
+    ruangDiv.innerHTML = daftarHTML;
+
+    function hitungStatus() {
+      let tersedia = 0, terpakai = 0;
+      ruangStatusData.forEach(status => {
+        if (status === 'tersedia') tersedia++;
+        if (status === 'terpakai') terpakai++;
+      });
+      return [tersedia, terpakai];
+    }
+
+    const ctx = document.getElementById('ruangChart').getContext('2d');
+    const total = ruangStatusData.length;
+    const usage = hitungStatus();
+
+    new Chart(ctx, {
+      type: 'doughnut',
+      data: {
+        labels: ['Available', 'In Use'],
+        datasets: [{
+          data: usage,
+          backgroundColor: ['#27ae60', '#e74c3c']
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { position: 'bottom' },
+          title: {
+            display: true,
+            text: 'Statistik Penggunaan Ruangan'
+          },
+          datalabels: {
+            color: '#fff',
+            formatter: (value, context) => {
+              const percent = ((value / total) * 100).toFixed(0);
+              return percent + '%';
+            }
+          }
+        }
+      },
+      plugins: [ChartDataLabels]
+    });
+  </script>
+</body>
+</html>
