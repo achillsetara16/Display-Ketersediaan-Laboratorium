@@ -74,7 +74,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         button { width: 100%; padding: 10px; background-color: #4CAF50; color: white; border: none; border-radius: 4px; font-size: 16px; cursor: pointer; }
         button:hover { background-color: #45a049; }
         .error { color: red; font-size: 14px; }
+
+        select:focus option[disabled] {
+    display: none;
+}
+
     </style>
+    <link rel="stylesheet" href="../assets/css/style.css">
+
 </head>
 <body>
     <div class="form-container">
@@ -91,9 +98,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <input type="password" name="password" placeholder="Password" required>
             <input type="password" name="confirm_password" placeholder="Konfirmasi Password" required>
             <select name="role" required>
+                <option value="" disabled selected>Status</option>
                 <option value="dosen">Dosen</option>
                 <option value="laboran">Laboran</option>
-                <option value="superadmin">Super Admin</option>
             </select>
             <button type="submit">Register</button>
         </form>
