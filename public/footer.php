@@ -14,11 +14,11 @@
 </head>
 <body class="min-h-screen flex flex-col">
 
-<footer class="w-full bg-[#2F81DF] text-white">
+<footer class="w-full bg-[#2B7A78] text-white">
     <div class="w-full px-6 py-10 grid md:grid-cols-2 gap-15">
 
     <div class="flex flex-col items-center md:items-start text-center md:text-left">
-      <img src="../assets/image/Logo Polibatam 2024.png" alt="Logo Polibatam" class="w-60 h-auto mb-2">
+      <img src="../image/poltek.png" alt="Logo Polibatam" class="w-40 h-auto mb-2">
       <h1 class="text-2xl font-bold mb-1">SIKL</h1>
       <p class="text-lg">Politeknik Negeri Batam</p>
     </div>
