@@ -1,73 +1,75 @@
 <?php
 session_start();
-include '../config/db.php'; // Menghubungkan file koneksi database
+include '../config/db.php';
 
 // Cek apakah pengguna sudah login
 if (isset($_SESSION['user_id'])) {
     $role = $_SESSION['role'];
-
-    // Redirect sesuai role
-    if ($role === 'superadmin') {
+    if ($role === 'super_admin') {
         header("Location: ../Super_Admin/masteradmin.php");
     } elseif ($role === 'laboran') {
         header("Location: ../laboran/dashboard_laboran.php");
     } elseif ($role === 'dosen') {
-        header("Location: ../dosen/dashboard.html");
+        header("Location: ../dosen/dashboard.php");
     } else {
-        header("Location: ../public/dashboard.php"); // Atau halaman default jika role tidak ditemukan
+        header("Location: ../public/dashboard.php");
     }
     exit();
 }
 
-
-$error = ''; // Inisialisasi error
+$error = '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = $_POST['email'];
     $password = $_POST['password'];
 
-    $stmt = $pdo->prepare("SELECT * FROM users WHERE email = :email");
-    $stmt->execute(['email' => $email]);
-    $user = $stmt->fetch(PDO::FETCH_ASSOC);
+    // Validasi format email
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $error = "Format email tidak valid!";
+    } else {
+        $stmt = $pdo->prepare("SELECT * FROM users WHERE email = :email");
+        $stmt->execute(['email' => $email]);
+        $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    if ($user) {
-        if (password_verify($password, $user['password'])) {
+        if ($user && password_verify($password, $user['password'])) {
             $_SESSION['user_id'] = $user['id'];
             $_SESSION['role'] = $user['role'];
             $_SESSION['nama_lengkap'] = $user['nama_lengkap'];
 
             // Redirect sesuai role
-            if ($user['role'] === 'superadmin') {
-                header("Location: ../Super_Admin/masteradmin.php");
-            } elseif ($user['role'] === 'laboran') {
-                header("Location: ../laboran/dashboard_laboran.php");
-            } elseif ($user['role'] === 'dosen') {
-                header("Location: ../dosen/dashboard.html");
-            } else {
-                header("Location: ../public/index.php");
-            }            
+            switch ($user['role']) {
+                case 'super_admin':
+                    header("Location: ../Super_Admin/masteradmin.php");
+                    break;
+                case 'laboran':
+                    header("Location: ../laboran/dashboard_laboran.php");
+                    break;
+                case 'dosen':
+                    header("Location: ../dosen/dashboard.php");
+                    break;
+                default:
+                    header("Location: ../public/index.php");
+            }
             exit();
         } else {
-            $error = "Password salah!";
+            $error = "Email atau password salah!";
         }
-    } else {
-        $error = "Email tidak terdaftar!";
     }
 }
 ?>
 
+<!-- HTML FORM LOGIN -->
 <!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         body { font-family: 'Inter', sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; background-color: #f4f4f4; }
         .form-container { background-color: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); width: 300px; }
-        input { width: 100%; padding: 10px; margin: 10px 0; border-radius: 4px; border: 1px solid #ddd; }
-        button { width: 100%; padding: 10px; background-color: #4CAF50; color: white; border: none; border-radius: 4px; font-size: 16px; cursor: pointer; }
+        input, button { width: 100%; padding: 10px; margin: 10px 0; border-radius: 4px; border: 1px solid #ddd; }
+        button { background-color: #4CAF50; color: white; font-size: 16px; cursor: pointer; border: none; }
         button:hover { background-color: #45a049; }
         .error { color: red; font-size: 14px; }
     </style>
@@ -75,11 +77,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <body>
     <div class="form-container">
         <h2>Login</h2>
-
         <?php if (!empty($error)): ?>
             <p class="error"><?= $error ?></p>
         <?php endif; ?>
-
         <form action="login.php" method="POST">
             <input type="email" name="email" placeholder="Email" required>
             <input type="password" name="password" placeholder="Password" required>
