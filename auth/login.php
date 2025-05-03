@@ -1,34 +1,51 @@
 <?php
 session_start();
-include 'db.php'; // Menghubungkan file koneksi database
+include '../config/db.php'; // Menghubungkan file koneksi database
 
 // Cek apakah pengguna sudah login
 if (isset($_SESSION['user_id'])) {
-    header("Location: dashboard.php"); // Redirect ke halaman dashboard jika sudah login
+    $role = $_SESSION['role'];
+
+    // Redirect sesuai role
+    if ($role === 'superadmin') {
+        header("Location: ../Super_Admin/masteradmin.php");
+    } elseif ($role === 'laboran') {
+        header("Location: ../laboran/dashboard_laboran.php");
+    } elseif ($role === 'dosen') {
+        header("Location: ../dosen/dashboard.html");
+    } else {
+        header("Location: ../public/dashboard.php"); // Atau halaman default jika role tidak ditemukan
+    }
     exit();
 }
 
-// Proses login jika form disubmit
+
+$error = ''; // Inisialisasi error
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Mendapatkan data dari form
     $email = $_POST['email'];
     $password = $_POST['password'];
 
-    // Query untuk mengambil data pengguna berdasarkan email
     $stmt = $pdo->prepare("SELECT * FROM users WHERE email = :email");
     $stmt->execute(['email' => $email]);
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
     if ($user) {
-        // Verifikasi password
         if (password_verify($password, $user['password'])) {
-            // Simpan informasi pengguna di session
             $_SESSION['user_id'] = $user['id'];
             $_SESSION['role'] = $user['role'];
             $_SESSION['nama_lengkap'] = $user['nama_lengkap'];
-            
-            // Redirect ke halaman dashboard atau halaman yang sesuai
-            header("Location: dashboard.php");
+
+            // Redirect sesuai role
+            if ($user['role'] === 'superadmin') {
+                header("Location: ../Super_Admin/masteradmin.php");
+            } elseif ($user['role'] === 'laboran') {
+                header("Location: ../laboran/dashboard_laboran.php");
+            } elseif ($user['role'] === 'dosen') {
+                header("Location: ../dosen/dashboard.html");
+            } else {
+                header("Location: ../public/index.php");
+            }            
             exit();
         } else {
             $error = "Password salah!";
@@ -58,10 +75,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <body>
     <div class="form-container">
         <h2>Login</h2>
-        
-        <!-- Menampilkan pesan error jika ada -->
-        <?php if (isset($error)): ?>
-            <p class="error"><?php echo $error; ?></p>
+
+        <?php if (!empty($error)): ?>
+            <p class="error"><?= $error ?></p>
         <?php endif; ?>
 
         <form action="login.php" method="POST">

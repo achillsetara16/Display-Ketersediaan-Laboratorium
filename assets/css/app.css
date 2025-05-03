@@ -1,0 +1,50 @@
+/* Custom font (bisa pakai Google Fonts di HTML, ini tambahan) */
+body {
+    font-family: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif;
+}
+
+/* Glowing border effect */
+@keyframes glowing-border {
+    0% {
+        box-shadow: 0 0 5px #1e3a8a, 0 0 10px #1e3a8a;
+    }
+    50% {
+        box-shadow: 0 0 15px #1e3a8a, 0 0 25px #3b82f6;
+    }
+    100% {
+        box-shadow: 0 0 5px #1e3a8a, 0 0 10px #1e3a8a;
+    }
+}
+
+.glow-border {
+    animation: glowing-border 1.5s infinite alternate;
+    position: relative;
+    overflow: hidden;
+    border-radius: 0.5rem; /* Optional: Tailwind-style rounding */
+}
+
+.glow-border::before {
+    content: "";
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    border-radius: inherit;
+    border: 3px solid transparent;
+    background: linear-gradient(45deg, #3b82f6, #1e3a8a, #3b82f6, #1e3a8a);
+    background-size: 300% 300%;
+    animation: border-rotate 3s linear infinite;
+    z-index: -1;
+}
+
+@keyframes border-rotate {
+    0% {
+        transform: rotate(0deg);
+        filter: hue-rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+        filter: hue-rotate(360deg);
+    }
+}

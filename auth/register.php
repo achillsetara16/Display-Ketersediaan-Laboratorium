@@ -1,10 +1,21 @@
 <?php
 session_start();
-include 'db.php'; // Menghubungkan file koneksi database
+include '../config/db.php'; // Menghubungkan file koneksi database
 
 // Cek apakah pengguna sudah login
 if (isset($_SESSION['user_id'])) {
-    header("Location: dashboard.php"); // Redirect ke halaman dashboard jika sudah login
+    $role = $_SESSION['role'];
+
+    // Redirect sesuai role
+    if ($role === 'superadmin') {
+        header("Location: ../Super_Admin/masteradmin.php");
+    } elseif ($role === 'laboran') {
+        header("Location: ../laboran/dashboard_laboran.php");
+    } elseif ($role === 'dosen') {
+        header("Location: ../dosen/dashboard.html");
+    } else {
+        header("Location: ../public/index.php"); // Atau halaman default jika role tidak ditemukan
+    }
     exit();
 }
 
