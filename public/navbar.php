@@ -17,7 +17,7 @@
 </head>
 <body>
 
-<nav class="bg-[#2F81DF] flex justify-between items-center px-12 py-4">
+<nav class="bg-[#2B7A78] flex justify-between items-center px-12 py-4">
     <div class="flex items-center text-[2.5rem] text-white font-bold">
         <img src="../assets/image/Logo Polibatam 2024.png" alt="Logo" class="w-24 h-auto mr-4">
         SKIL

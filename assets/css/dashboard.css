@@ -1,0 +1,201 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #ecf0f1;
+    color: #2c3e50;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Topbar Styling */
+.topbar {
+    position: fixed;
+    top: 0;
+    left: 250px;
+    right: 0;
+    height: 60px;
+    background-color: #17252A;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 30px;
+    color: #ffffff;
+    font-size: 22px;
+    font-weight: bold;
+    z-index: 1000;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.profile-logo {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+/* Sidebar Styling */
+.sidebar {
+    position: fixed;
+    top: 0; /* Menempatkan sidebar tepat di bawah topbar */
+    left: 0;
+    width: 250px;
+    background-color: #2B7A78;
+    color: white;
+    padding-top: 20px;
+    height: 100%; /* Membuat sidebar memenuhi sisa layar */
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+
+.sidebar ul li a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 20px;
+    color: white; /* Ubah warna default link */
+    text-decoration: none; /* Hapus garis bawah */
+}
+
+
+.sidebar ul li a .icon {
+    font-size: 1.2rem;
+}
+
+.sidebar ul li a:hover {
+    color: #ffffff;
+    background-color: #3AAFA9; /* warna saat hover */
+}
+
+.active {
+    background-color: #def2f1;
+    color: #17252A !important;
+    font-weight: bold;
+    border-left: 4px solid #3AAFA9; /* opsional untuk penanda */
+}
+
+.sidebar .logo-container {
+    display: flex;
+    justify-content: center;  /* Mengatur posisi horizontal ke tengah */
+    align-items: center;      /* Mengatur posisi vertikal ke tengah */
+    height: 80px;             /* Atur tinggi container logo */
+    padding: 10px;            /* Berikan jarak sedikit di sekitar logo */
+}
+
+.sidebar .logo-container img {
+    width: 100%;
+    height: auto;
+    max-width: 120px;  /* Atur ukuran maksimal gambar */
+    max-height: 120px; /* Atur tinggi maksimal gambar */
+    object-fit: contain;  /* Agar gambar tetap terjaga proporsinya */
+}
+
+.logo-divider {
+    height: 2px;
+    background-color: #ddd;
+    margin: 20px 20px;  /* Jarak garis dari logo dan sisi kiri-kanan */
+}
+
+
+/* Konten Utama Styling */
+.content {
+    margin-left: 250px; /* Memberikan ruang untuk sidebar */
+    margin-top: 60px; /* Memberikan ruang untuk topbar */
+    padding: 1rem;
+    flex-grow: 1;
+}
+
+/* Layout Grid */
+.container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px;
+}
+
+/* Card Styling */
+.card {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    text-align: center;
+    padding: 20px;
+}
+
+.card h3 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 0.5rem;
+    font-size: 1.4rem;
+    color: #5dade2;
+}
+
+/* Status Styling */
+.status {
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 0.95rem;
+    font-weight: bold;
+    text-transform: capitalize;
+}
+
+#daftarRuangan p {
+    margin-bottom: 10px; /* atur jarak antar baris */
+}
+
+.status.tersedia {
+    background: #27ae60;
+    color: white;
+}
+
+.status.terpakai {
+    background: #e74c3c;
+    color: white;
+}
+
+/* Table Styling */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1.2rem;
+    background: white;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.05);
+}
+
+th, td {
+    padding: 14px 16px;
+    text-align: center;
+}
+
+th {
+    background: #2980b9;
+    color: white;
+    font-weight: bold;
+}
+
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+tr:hover {
+    background-color: #eef6ff;
+}
+
+/* Footer Styling */
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #17252A;
+    color: #ecf0f1;
+    margin-top: 50px;
+}
