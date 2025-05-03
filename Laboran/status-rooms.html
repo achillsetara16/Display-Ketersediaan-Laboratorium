@@ -21,34 +21,32 @@
         }
 
         .sidebar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            height: 100%;
-            width: 250px;
-            background: linear-gradient(to bottom, #2d3e50, #3b4c66);
-            color: white;
-            padding: 30px 20px;
-            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.4);
-        }
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 250px;
+      height: 100%;
+      background-color: #2B7A78;
+      color: white;
+      padding: 20px;
+      box-shadow: 2px 0 6px rgba(0, 0, 0, 0.1);
+    }
 
-        .sidebar .logo-container {
-            text-align: center;
-            margin-bottom: 40px;
-        }
-
-        .sidebar .logo-container img {
-            max-width: 80%;
-            height: auto;
-        }
-
-        .sidebar h2 {
-            font-size: 22px;
-            margin-bottom: 30px;
-            font-weight: 600;
-            text-align: center;
-        }
-
+    .logo-container {
+      text-align: center;
+      margin-bottom: 0px;
+    }
+    .border {
+      margin-bottom: 40px;
+      border: 1px solid white;
+      background-color: white;
+      border-radius: 2px;
+    }
+    .logo-container img {
+      width: 170px;
+      height: auto;
+      margin-bottom: 10px;
+    }
         .sidebar a {
             display: block;
             color: #dbe2ef;
@@ -155,14 +153,13 @@
             font-weight: bold;
         }
 
-        footer {
-            text-align: center;
-            padding: 10px;
-            background-color: #1e2a47;
-            color: #fff;
-            font-size: 14px;
-            margin-top: 20px;
-        }
+     footer {
+      text-align: center;
+      padding: 20px;
+      background-color: #17252A;
+      color: #ecf0f1;
+      margin-top: 50px;
+    }
 
         @media (max-width: 768px) {
             .sidebar {
@@ -184,13 +181,12 @@
 </head>
 
 <body>
-
-    <!-- SIDEBAR -->
     <div class="sidebar">
         <div class="logo-container">
-            <img src="path-to-your-logo.png" alt="Logo Kampus">
+          <img src="../image/poltek.png" alt="Logo Kampus" />
         </div>
-        <h2>Web Laboran</h2>
+        <div class="border">
+        </div>
         <a href="dashboard.html"><i class="fas fa-home"></i> Dashboard</a>
         <a href="tambah-matakuliah.html"><i class="fas fa-plus-circle"></i> Add Matakuliah</a>
         <a href="list-ruangan.html"><i class="fas fa-building"></i> List Ruangan</a>
