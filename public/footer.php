@@ -14,7 +14,7 @@
 </head>
 <body class="min-h-screen flex flex-col">
 
-<footer class="w-full bg-[#2B7A78] text-white">
+<footer class="w-full bg-[DarkCyan] text-white">
     <div class="w-full px-6 py-10 grid md:grid-cols-2 gap-15">
 
     <div class="flex flex-col items-center md:items-start text-center md:text-left">

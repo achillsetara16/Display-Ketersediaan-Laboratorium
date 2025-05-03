@@ -1,5 +1,7 @@
 <footer>
-  &copy; 2025 Sistem Kehadiran Dosen | Politeknik Negeri Batam
+<div class="text-center text-sm text-white py-5">
+    &copy; <?= date('Y') ?> Polibatam. All rights reserved.
+  </div>
 </footer>
 
 <script>

@@ -2,6 +2,15 @@
 session_start();
 $role = $_SESSION['role'] ?? 'guest';
 $current = basename($_SERVER['PHP_SELF']); // untuk mengetahui nama file saat ini
+
+$profileLink = '#';
+if ($role === 'dosen') {
+    $profileLink = '../dosen/profile.php';
+} elseif ($role === 'laboran') {
+    $profileLink = '../laboran/profile.php';
+}
+
+$user = $_SESSION['user'] ?? ['profile_photo_path' => null]; 
 ?>
 
 <!DOCTYPE html>
@@ -49,5 +58,40 @@ $current = basename($_SERVER['PHP_SELF']); // untuk mengetahui nama file saat in
   ?>
 </span>
 
-  <img src="../img/download.png" alt="Profile" class="profile-logo" />
+<div class="dropdown-container">
+  <!-- Avatar Button -->
+  <button id="avatarBtn">
+  <img 
+    class="profile-logo"
+    src="<?= $user['profile_photo_path'] ? '../storage/' . $user['profile_photo_path'] : 'https://th.bing.com/th/id/OIP.Icb6-bPoeUmXadkNJbDP4QHaHa?pid=ImgDet&w=178&h=178&c=7&dpr=1,5' ?>" 
+    alt="Foto Profil" />
+
+  </button>
+
+  <!-- Dropdown Menu -->
+  <div id="dropdownMenu" class="dropdown-menu">
+    <ul>
+      <li><a href="<?= $profileLink ?>">Lihat Profil</a></li>
+      <li><a href="../auth/logout.php">Logout</a></li>
+    </ul>
+  </div>
 </div>
+
+
+<!-- JavaScript -->
+<script>
+  const avatarBtn = document.getElementById('avatarBtn');
+  const dropdownMenu = document.getElementById('dropdownMenu');
+
+  avatarBtn.addEventListener('click', function (e) {
+    e.stopPropagation();
+    dropdownMenu.style.display = (dropdownMenu.style.display === 'block') ? 'none' : 'block';
+  });
+
+  document.addEventListener('click', function () {
+    dropdownMenu.style.display = 'none';
+  });
+</script>
+
+</div>
+</body>
