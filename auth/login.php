@@ -75,7 +75,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         button { background-color: #4CAF50; color: white; font-size: 16px; cursor: pointer; border: none; }
         button:hover { background-color: #45a049; }
         .error { color: red; font-size: 14px; }
+        
+        select:focus option[disabled] {
+    display: none;
+}
+
     </style>
+    <link rel="stylesheet" href="../assets/css/style.css">
 </head>
 <body>
     <div class="form-container">
