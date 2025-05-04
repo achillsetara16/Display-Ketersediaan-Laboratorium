@@ -25,15 +25,12 @@
   <p class="text-gray-600"><?= htmlspecialchars($user['email']) ?></p>
 </div>
 
-
-
-
 <div class="mx-auto my-10 p-5 bg-white shadow-lg rounded-lg">
-    <h2 class="py-2 px-4 border-b border-gray-200 font-semibold text-2xl">Informasi Pribadi:</h2>
+    <h2 class="py-2 px-4 border-b border-gray-200 font-semibold text-2xl">Personal Info:</h2>
     <table class="min-w-full bg-white">
         <tbody>
             <tr>
-                <td class="py-2 px-4 border-b border-gray-200 font-semibold">Nama</td>
+                <td class="py-2 px-4 border-b border-gray-200 font-semibold">Name</td>
                 <td class="py-2 px-4 border-b border-gray-200"><?= htmlspecialchars($user['nama_lengkap']) ?></td>
             </tr>
             <tr>
@@ -41,11 +38,11 @@
                 <td class="py-2 px-4 border-b border-gray-200"><?= htmlspecialchars($user['email']) ?></td>
             </tr>
             <tr>
-                <td class="py-2 px-4 border-b border-gray-200 font-semibold">Pendidikan Terakhir</td>
+                <td class="py-2 px-4 border-b border-gray-200 font-semibold">Last Education</td>
                 <td class="py-2 px-4 border-b border-gray-200"><?= htmlspecialchars($user['last_education'] ?? '-') ?></td>
             </tr>
             <tr>
-                <td class="py-2 px-4 border-b border-gray-200 font-semibold">Jabatan</td>
+                <td class="py-2 px-4 border-b border-gray-200 font-semibold">Status</td>
                 <td class="py-2 px-4 border-b border-gray-200"><?= htmlspecialchars($user['position'] ?? '-') ?></td>
             </tr>
         </tbody>
@@ -53,9 +50,9 @@
 </div>
 
 <div class="flex justify-center mt-6">
-    <a href="edit_profile.php">
+    <a href="edit-profile.php">
         <button class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded-md shadow-sm transition">
-            Edit Profil
+            Edit Profile
         </button>
     </a>
 </div>

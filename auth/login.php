@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 <?php
 session_start();
 include '../config/db.php';
@@ -108,4 +106,3 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </div>
 </body>
 </html>
->>>>>>> dfb707e4707ce33ff35d82cb8432e452c12ec874

@@ -60,21 +60,20 @@ $user = $_SESSION['user'] ?? ['profile_photo_path' => null];
 
 <div class="dropdown-container">
   <!-- Avatar Button -->
-  <button id="avatarBtn">
+<button id="avatarBtn">
   <img 
     class="profile-logo"
     src="<?= $user['profile_photo_path'] ? '../storage/' . $user['profile_photo_path'] : 'https://th.bing.com/th/id/OIP.Icb6-bPoeUmXadkNJbDP4QHaHa?pid=ImgDet&w=178&h=178&c=7&dpr=1,5' ?>" 
     alt="Foto Profil" />
+</button>
 
-  </button>
-
-  <!-- Dropdown Menu -->
-  <div id="dropdownMenu" class="dropdown-menu">
-    <ul>
-      <li><a href="<?= $profileLink ?>">Lihat Profil</a></li>
-      <li><a href="../auth/logout.php">Logout</a></li>
-    </ul>
-  </div>
+<!-- Dropdown Menu -->
+<div id="dropdownMenu" class="dropdown-menu">
+  <ul>
+    <li><a href="<?= $profileLink ?>"><i class="bi bi-person-circle"></i> Lihat Profil</a></li>
+    <li><a href="../auth/logout.php"><i class="bi bi-box-arrow-right"></i> Logout</a></li>
+  </ul>
+</div>
 </div>
 
 
