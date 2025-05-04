@@ -24,6 +24,7 @@ unset($_SESSION['success']);
 
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <title>Profil Dosen</title>
@@ -35,14 +36,16 @@ unset($_SESSION['success']);
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.js"></script>
     <link rel="stylesheet" href="../assets/css/app.css">
 </head>
+
 <body>
 
-<div class="mx-auto p-4 w-full">
-    <div class="bg-white p-4 rounded-lg shadow-md">
-        <?php include '../partials/profile_view.php'; ?>
+    <div class="mx-auto p-4 w-full">
+        <div class="bg-white p-4 rounded-lg shadow-md">
+            <?php include '../partials/profile_view.php'; ?>
+        </div>
     </div>
-</div>
 
-<?php include '../public/footer.php'; ?>
+    <?php include '../public/footer.php'; ?>
 </body>
+
 </html>

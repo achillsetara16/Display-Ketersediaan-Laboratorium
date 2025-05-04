@@ -19,19 +19,19 @@ body {
 /* Form container */
 .form-container {
     background-color: #ffffff;
-    padding: 32px;
-    border-radius: 12px;
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+    padding: 48px; /* diperbesar */
+    border-radius: 16px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
     width: 100%;
-    max-width: 420px;
+    max-width: 540px; /* diperbesar dari 420px */
     text-align: center;
-    border-top: 6px solid #2B7A78;
+    border-top: 8px solid #2B7A78;
 }
 
 /* Heading */
 h2 {
-    margin-bottom: 24px;
-    font-size: 28px;
+    margin-bottom: 32px;
+    font-size: 32px; /* lebih besar */
     font-weight: 700;
     color: #2B7A78;
 }
@@ -39,11 +39,11 @@ h2 {
 /* Input and select */
 input, select {
     width: 100%;
-    padding: 12px 14px;
-    margin: 12px 0;
-    border-radius: 8px;
+    padding: 14px 16px; /* lebih besar */
+    margin: 16px 0;
+    border-radius: 10px;
     border: 1.5px solid #ccc;
-    font-size: 16px;
+    font-size: 18px;
     background-color: #f1f1f1;
     transition: all 0.3s ease;
     color: #17252A;
@@ -58,12 +58,12 @@ input:focus, select:focus {
 /* Button style */
 button {
     width: 100%;
-    padding: 12px;
+    padding: 14px;
     background-color: #2B7A78;
     color: white;
     border: none;
-    border-radius: 8px;
-    font-size: 16px;
+    border-radius: 10px;
+    font-size: 18px;
     font-weight: 600;
     cursor: pointer;
     transition: background-color 0.3s ease;
@@ -76,14 +76,14 @@ button:hover {
 /* Error message */
 .error {
     color: #e63946;
-    font-size: 14px;
-    margin-top: 10px;
+    font-size: 16px;
+    margin-top: 12px;
 }
 
 /* Bottom link */
 p {
-    margin-top: 20px;
-    font-size: 14px;
+    margin-top: 24px;
+    font-size: 16px;
     color: #555;
 }
 
