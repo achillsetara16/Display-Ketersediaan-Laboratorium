@@ -10,9 +10,9 @@ if (isset($_SESSION['user_id'])) {
     if ($role === 'superadmin') {
         header("Location: ../Super_Admin/masteradmin.php");
     } elseif ($role === 'laboran') {
-        header("Location: ../laboran/dashboard_laboran.php");
+        header("Location: ../Laboran/dashboard_laboran.php");
     } elseif ($role === 'dosen') {
-        header("Location: ../dosen/dashboard.html");
+        header("Location: ../Dosen/dashboard.php");
     } else {
         header("Location: ../public/index.php"); // Atau halaman default jika role tidak ditemukan
     }

@@ -47,10 +47,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     header("Location: ../Super_Admin/masteradmin.php");
                     break;
                 case 'laboran':
-                    header("Location: ../laboran/dashboard_laboran.php");
+                    header("Location: ../Laboran/dashboard_laboran.php");
                     break;
                 case 'dosen':
-                    header("Location: ../dosen/dashboard.php");
+                    header("Location: ../Dosen/dashboard.php");
                     break;
                 default:
                     header("Location: ../public/index.php");
