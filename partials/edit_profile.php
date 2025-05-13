@@ -2,7 +2,6 @@
 session_start();
 require '../config/db.php';
 
-// Redirect jika belum login
 if (!isset($_SESSION['user_id'])) {
     header('Location: ../auth/login.php');
     exit();

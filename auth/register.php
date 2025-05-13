@@ -62,9 +62,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="stylesheet" href="../assets/css/style.css">
-    
+
 </head>
 
 <body>
@@ -78,35 +78,36 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <form action="register.php" method="POST">
             <div class="input-group">
                 <div class="icon"><i class="fas fa-user"></i></div>
-            <input type="text" name="nama_lengkap" placeholder="Nama Lengkap" required>
+                <input type="text" name="nama_lengkap" placeholder="Nama Lengkap" required>
             </div>
-            
+
             <div class="input-group">
-            <div class="icon"><i class="fas fa-envelope"></i></div>
-            <input type="email" placeholder="Email" name="email" required>
-        </div>
-        <div class="input-group">
-            <div class="icon"><i class="fas fa-lock"></i></div>
-            <input type="password" placeholder="Password" name="password" required>
-        </div>
-        <div class="input-group">
-            <div class="icon"><i class="fas fa-lock"></i></div>
-            <input type="password" placeholder="Password Confirm" name="password_confirmation" required>
-        </div>
-        <div class="input-group">
-            <div class="icon"><i class="fas fa-user-gear"></i></div>
-            <select name="role" required>
-                <option value="" disabled selected>Role</option>
-                <option value="dosen">Dosen</option>
-                <option value="laboran">Laboran</option>
-            </select>
-        </div>
+                <div class="icon"><i class="fas fa-envelope"></i></div>
+                <input type="email" placeholder="Email" name="email" required>
+            </div>
+            <div class="input-group">
+                <div class="icon"><i class="fas fa-lock"></i></div>
+                <input type="password" placeholder="Password" name="password" required>
+            </div>
+            <div class="input-group">
+                <div class="icon"><i class="fas fa-lock"></i></div>
+                <input type="password" placeholder="Password Confirm" name="password_confirmation" required>
+            </div>
+            <div class="input-group">
+                <div class="icon"><i class="fas fa-user-gear"></i></div>
+                <select name="role" required>
+                    <option value="" disabled selected>Role</option>
+                    <option value="dosen">Dosen</option>
+                    <option value="laboran">Laboran</option>
+                </select>
+            </div>
             <button type="submit">Register</button>
         </form>
 
         <p>Sudah punya akun? <a href="login.php">Login di sini</a></p>
     </div>
 </body>
+
 </html>
 
 </html>

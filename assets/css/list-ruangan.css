@@ -1,77 +1,77 @@
 * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-  }
-  
-  body {
-    font-family: 'Poppins', sans-serif;
-    background-color: #f4f7fa;
-  }
-  
-  .main-content {
-    margin-left: 250px;
-    padding: 20px;
-    padding-top: 80px;
-    overflow-y: auto;
-  }
-  
-  .card {
-    max-width: 10   00px;
-    margin: auto;
-    background-color: #ffffff;
-    padding: 30px;
-    border-radius: 20px;
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-  }
-  
-  .card h2 {
-    text-align: center;
-    margin-bottom: 30px;
-    color: #1e2a47;
-    font-size: 26px;
-  }
-  
-  /* Gaya Tabel */
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 15px;
-  }
-  
-  table th, table td {
-    padding: 12px;
-    text-align: left;
-    border: 1px solid #cfd8dc;
-  }
-  
-  table th {
-    background-color: #3498db;
-    color: white;
-    text-transform: uppercase;
-    letter-spacing: 0.7px;
-  }
-  
-  table td {
-    background-color: #f9f9f9;
-  }
-  
-  table tr:hover td {
-    background-color: #e0f7fa;
-    transition: background-color 0.3s ease;
-  }
-  
-  table td button {
-    background-color: #e74c3c;
-    color: white;
-    border: none;
-    padding: 5px 10px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  table td button:hover {
-    background-color: #c0392b;
-  }
-  
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #f4f7fa;
+}
+
+.main-content {
+  margin-left: 250px;
+  padding: 20px;
+  padding-top: 80px;
+  overflow-y: auto;
+}
+
+.card {
+  max-width: 10 00px;
+  margin: auto;
+  background-color: #ffffff;
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+
+.card h2 {
+  text-align: center;
+  margin-bottom: 30px;
+  color: #1e2a47;
+  font-size: 26px;
+}
+
+/* Gaya Tabel */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 15px;
+}
+
+table th,
+table td {
+  padding: 12px;
+  text-align: left;
+  border: 1px solid #cfd8dc;
+}
+
+table th {
+  background-color: #3498db;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 0.7px;
+}
+
+table td {
+  background-color: #f9f9f9;
+}
+
+table tr:hover td {
+  background-color: #e0f7fa;
+  transition: background-color 0.3s ease;
+}
+
+table td button {
+  background-color: #e74c3c;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+table td button:hover {
+  background-color: #c0392b;
+}

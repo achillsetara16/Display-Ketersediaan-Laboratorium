@@ -2,7 +2,6 @@
 session_start();
 include '../config/db.php';
 
-// Cek login
 if (!isset($_SESSION['user_id'])) {
     header("Location: ../login.php");
     exit();
@@ -40,7 +39,7 @@ unset($_SESSION['success']);
             <?php include '../partials/profile_view.php'; ?>
         </div>
     </div>
-
+    <!-- Footer -->
     <?php include '../public/footer.php'; ?>
 </body>
 

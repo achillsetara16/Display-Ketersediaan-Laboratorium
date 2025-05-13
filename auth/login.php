@@ -82,33 +82,34 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <p class="error"><?= htmlspecialchars($error) ?></p>
         <?php endif; ?>
         <form action="login.php" method="POST">
-            
-        <!-- Email -->
-        <div class="input-group">
-            <div class="icon"><i class="fas fa-envelope"></i></div>
-            <input type="email" placeholder="Email" name="email" required>
-        </div>
 
-        <!-- Password -->
-        <div class="input-group">
-            <div class="icon"><i class="fas fa-lock"></i></div>
-            <input type="password" placeholder="Password" name="password" required>
-        </div>
+            <!-- Email -->
+            <div class="input-group">
+                <div class="icon"><i class="fas fa-envelope"></i></div>
+                <input type="email" placeholder="Email" name="email" required>
+            </div>
 
-        <!-- Role -->
-        <div class="input-group">
-            <div class="icon"><i class="fas fa-user-gear"></i></div>
-            <select name="role" required>
-                <option value="" disabled selected>Status</option>
-                <option value="dosen">Dosen</option>
-                <option value="laboran">Laboran</option>
-                <option value="superadmin">Super Admin</option>
-            </select>
-        </div>
+            <!-- Password -->
+            <div class="input-group">
+                <div class="icon"><i class="fas fa-lock"></i></div>
+                <input type="password" placeholder="Password" name="password" required>
+            </div>
+
+            <!-- Role -->
+            <div class="input-group">
+                <div class="icon"><i class="fas fa-user-gear"></i></div>
+                <select name="role" required>
+                    <option value="" disabled selected>Status</option>
+                    <option value="dosen">Dosen</option>
+                    <option value="laboran">Laboran</option>
+                    <option value="superadmin">Super Admin</option>
+                </select>
+            </div>
             <button type="submit">Login</button>
         </form>
     </div>
 </body>
+
 </html>
 
 </html>

@@ -1,7 +1,6 @@
 <?php include('../partials/header.php'); ?>
 <?php include('../partials/sidebar.php'); ?>
 
-
 <div class="content">
     <div class="container">
         <div class="card">
@@ -74,4 +73,5 @@
     </div>
 </div>
 
+<!-- Footer -->
 <?php include('../partials/footer.php'); ?>
