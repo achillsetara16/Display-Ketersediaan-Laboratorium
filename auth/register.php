@@ -23,11 +23,11 @@ if (isset($_SESSION['user_id'])) {
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = $_POST['email'];
     $password = $_POST['password'];
-    $confirm_password = $_POST['confirm_password'];
+    $password_confirmation = $_POST['password_confirmation'];
     $role = $_POST['role'];
     $nama_lengkap = $_POST['nama_lengkap'];
 
-    if ($password !== $confirm_password) {
+    if ($password !== $password_confirmation) {
         $error = "Password dan konfirmasi password tidak sama!";
     } else {
         $hashed_password = password_hash($password, PASSWORD_DEFAULT);
@@ -91,12 +91,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
         <div class="input-group">
             <div class="icon"><i class="fas fa-lock"></i></div>
-            <input type="password" placeholder="Password Confirm" name="password" required>
+            <input type="password" placeholder="Password Confirm" name="password_confirmation" required>
         </div>
         <div class="input-group">
             <div class="icon"><i class="fas fa-user-gear"></i></div>
             <select name="role" required>
-                <option value="" disabled selected>Status</option>
+                <option value="" disabled selected>Role</option>
                 <option value="dosen">Dosen</option>
                 <option value="laboran">Laboran</option>
             </select>

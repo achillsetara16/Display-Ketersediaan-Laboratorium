@@ -30,7 +30,7 @@
     <table class="min-w-full bg-white">
         <tbody>
             <tr>
-                <td class="py-2 px-4 border-b border-gray-200 font-semibold">Name</td>
+                <td class="py-2 px-4 border-b border-gray-200 font-semibold">Full Name</td>
                 <td class="py-2 px-4 border-b border-gray-200"><?= htmlspecialchars($user['nama_lengkap']) ?></td>
             </tr>
             <tr>
@@ -38,12 +38,20 @@
                 <td class="py-2 px-4 border-b border-gray-200"><?= htmlspecialchars($user['email']) ?></td>
             </tr>
             <tr>
-                <td class="py-2 px-4 border-b border-gray-200 font-semibold">Last Education</td>
-                <td class="py-2 px-4 border-b border-gray-200"><?= htmlspecialchars($user['last_education'] ?? '-') ?></td>
+                <td class="py-2 px-4 border-b border-gray-200 font-semibold">Bio</td>
+                <td class="py-2 px-4 border-b border-gray-200"><?= htmlspecialchars($user['bio'] ?? '-') ?></td>
+            </tr>
+            <tr>
+                <td class="py-2 px-4 border-b border-gray-200 font-semibold">Role</td>
+                <td class="py-2 px-4 border-b border-gray-200"><?= htmlspecialchars($user['role'] ?? '-') ?></td>
             </tr>
             <tr>
                 <td class="py-2 px-4 border-b border-gray-200 font-semibold">Status</td>
-                <td class="py-2 px-4 border-b border-gray-200"><?= htmlspecialchars($user['position'] ?? '-') ?></td>
+                <td class="py-2 px-4 border-b border-gray-200">
+                    <span class="<?= $user['status'] === 'active' ? 'text-green-600' : 'text-red-600' ?>">
+                        <?= htmlspecialchars($user['status'] ?? '-') ?>
+                    </span>
+                </td>
             </tr>
         </tbody>
     </table>

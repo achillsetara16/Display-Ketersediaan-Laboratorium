@@ -20,8 +20,8 @@ $error = null;
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $name = trim($_POST['name']);
     $email = trim($_POST['email']);
-    $last_education = trim($_POST['last_education']);
-    $position = trim($_POST['position']);
+    $bio = trim($_POST['bio']);
+    $status = trim($_POST['status']);
     $profile_photo_path = $user['profile_photo_path'];
 
     // Cek apakah ada file diupload
@@ -49,15 +49,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (!$error) {
         $stmt = $pdo->prepare("
             UPDATE users 
-            SET name = :name, email = :email, last_education = :last_education, 
-                position = :position, profile_photo_path = :profile_photo_path 
+            SET name = :name, email = :email, bio = :bio, 
+                 profile_photo_path = :profile_photo_path 
             WHERE id = :user_id
         ");
         $stmt->execute([
             'name' => $name,
             'email' => $email,
-            'last_education' => $last_education,
-            'position' => $position,
+            'bio' => $bio,
             'profile_photo_path' => $profile_photo_path,
             'user_id' => $user_id
         ]);
@@ -114,8 +113,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         <div class="grid md:grid-cols-2 gap-6">
             <div>
-                <label class="block text-sm font-medium text-gray-700">Nama</label>
-                <input type="text" name="name" value="<?= htmlspecialchars($user['name']) ?>"
+                <label class="block text-sm font-medium text-gray-700">Full Name</label>
+                <input type="text" name="nama_lengkap" value="<?= htmlspecialchars($user['nama_lengkap']) ?>"
                        class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2" required>
             </div>
             <div>
@@ -123,26 +122,31 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <input type="email" name="email" value="<?= htmlspecialchars($user['email']) ?>"
                        class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2" required>
             </div>
-            <div>
-                <label class="block text-sm font-medium text-gray-700">Pendidikan Terakhir</label>
-                <input type="text" name="last_education" value="<?= htmlspecialchars($user['last_education']) ?>"
-                       class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2">
+            <div class="md:col-span-2">
+                <label class="block text-sm font-medium text-gray-700">Bio</label>
+                <textarea name="bio" rows="4"
+                          class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"><?= htmlspecialchars($user['bio']) ?></textarea>
             </div>
             <div>
-                <label class="block text-sm font-medium text-gray-700">Jabatan</label>
-                <input type="text" name="position" value="<?= htmlspecialchars($user['position']) ?>"
-                       class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2">
+                <label class="block text-sm font-medium text-gray-700">Role</label>
+                <input type="text" value="<?= htmlspecialchars($user['role']) ?>"
+                       class="mt-1 block w-full bg-gray-100 border border-gray-300 rounded-md shadow-sm p-2 text-gray-600" readonly>
+            </div>
+            <div>
+                <label class="block text-sm font-medium text-gray-700">Status</label>
+                <input type="text" value="<?= htmlspecialchars($user['status']) ?>"
+                       class="mt-1 block w-full bg-gray-100 border border-gray-300 rounded-md shadow-sm p-2 text-gray-600" readonly>
             </div>
         </div>
 
         <div class="mt-8 flex justify-center gap-4">
             <button type="submit"
                     class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-md transition">
-                Simpan
+                Save
             </button>
             <a href="profile.php"
                class="bg-gray-300 hover:bg-gray-400 text-gray-800 px-6 py-2 rounded-md transition">
-                Batal
+                Cancel
             </a>
         </div>
     </form>
