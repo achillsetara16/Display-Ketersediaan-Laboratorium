@@ -3,12 +3,6 @@
 <link rel="stylesheet" href="../assets/css/list-ruangan.css">
 
 
-<!-- TOPBAR -->
-<div class="topbar">
-    <div class="title">List Ruangan</div>
-    <div class="profile-icon"><i class="fas fa-user-circle"></i></div>
-</div>
-
 <!-- MAIN CONTENT -->
 <div class="main-content">
     <div class="card">

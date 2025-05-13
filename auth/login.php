@@ -71,57 +71,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <title>Login</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="stylesheet" href="../assets/css/style.css"> <!-- Pastikan file CSS ini tersedia -->
-    <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            background-color: #f4f4f4;
-        }
-
-        .form-container {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            width: 300px;
-        }
-
-        input,
-        button,
-        select {
-            width: 100%;
-            padding: 10px;
-            margin: 10px 0;
-            border-radius: 4px;
-            border: 1px solid #ddd;
-        }
-
-        button {
-            background-color: #4CAF50;
-            color: white;
-            font-size: 16px;
-            cursor: pointer;
-            border: none;
-        }
-
-        button:hover {
-            background-color: #45a049;
-        }
-
-        .error {
-            color: red;
-            font-size: 14px;
-        }
-
-        select:focus option[disabled] {
-            display: none;
-        }
-    </style>
 </head>
 
 <body>
@@ -131,21 +82,33 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <p class="error"><?= htmlspecialchars($error) ?></p>
         <?php endif; ?>
         <form action="login.php" method="POST">
-            <input type="email" name="email" placeholder="Email" required>
-            <input type="password" name="password" placeholder="Password" required>
+            
+        <!-- Email -->
+        <div class="input-group">
+            <div class="icon"><i class="fas fa-envelope"></i></div>
+            <input type="email" placeholder="Email" name="email" required>
+        </div>
+
+        <!-- Password -->
+        <div class="input-group">
+            <div class="icon"><i class="fas fa-lock"></i></div>
+            <input type="password" placeholder="Password" name="password" required>
+        </div>
+
+        <!-- Role -->
+        <div class="input-group">
+            <div class="icon"><i class="fas fa-user-gear"></i></div>
             <select name="role" required>
-                <option value="" disabled selected>Pilih Role</option>
-                <option value="super_admin">Super Admin</option>
-                <option value="laboran">Laboran</option>
+                <option value="" disabled selected>Status</option>
                 <option value="dosen">Dosen</option>
+                <option value="laboran">Laboran</option>
+                <option value="superadmin">Super Admin</option>
             </select>
+        </div>
             <button type="submit">Login</button>
         </form>
     </div>
 </body>
-<<<<<<< HEAD
 </html>
-=======
 
 </html>
->>>>>>> e969dd9d99e22a88f7e21b96197583aacce20645

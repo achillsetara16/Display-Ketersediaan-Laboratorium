@@ -2,11 +2,6 @@
 <?php include('../partials/sidebar.php'); ?>
 <link rel="stylesheet" href="../assets/css/add-matkul.css">
 
-<!-- Topbar -->
-<div class="topbar">
-  <div>Tambah Matakuliah</div>
-  <i class="fas fa-user-circle"></i>
-</div>
 
 <!-- Main content -->
 <div class="main">

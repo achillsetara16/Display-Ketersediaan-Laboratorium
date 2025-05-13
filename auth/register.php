@@ -62,59 +62,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="stylesheet" href="../assets/css/style.css">
-    <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            background-color: #f4f4f4;
-        }
-
-        .form-container {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            width: 300px;
-        }
-
-        input,
-        select {
-            width: 100%;
-            padding: 10px;
-            margin: 10px 0;
-            border-radius: 4px;
-            border: 1px solid #ddd;
-        }
-
-        button {
-            width: 100%;
-            padding: 10px;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            font-size: 16px;
-            cursor: pointer;
-        }
-
-        button:hover {
-            background-color: #45a049;
-        }
-
-        .error {
-            color: red;
-            font-size: 14px;
-        }
-
-        select:focus option[disabled] {
-            display: none;
-        }
-    </style>
+    
 </head>
 
 <body>
@@ -126,24 +76,37 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <?php endif; ?>
 
         <form action="register.php" method="POST">
+            <div class="input-group">
+                <div class="icon"><i class="fas fa-user"></i></div>
             <input type="text" name="nama_lengkap" placeholder="Nama Lengkap" required>
-            <input type="email" name="email" placeholder="Email" required>
-            <input type="password" name="password" placeholder="Password" required>
-            <input type="password" name="confirm_password" placeholder="Konfirmasi Password" required>
+            </div>
+            
+            <div class="input-group">
+            <div class="icon"><i class="fas fa-envelope"></i></div>
+            <input type="email" placeholder="Email" name="email" required>
+        </div>
+        <div class="input-group">
+            <div class="icon"><i class="fas fa-lock"></i></div>
+            <input type="password" placeholder="Password" name="password" required>
+        </div>
+        <div class="input-group">
+            <div class="icon"><i class="fas fa-lock"></i></div>
+            <input type="password" placeholder="Password Confirm" name="password" required>
+        </div>
+        <div class="input-group">
+            <div class="icon"><i class="fas fa-user-gear"></i></div>
             <select name="role" required>
                 <option value="" disabled selected>Status</option>
                 <option value="dosen">Dosen</option>
                 <option value="laboran">Laboran</option>
             </select>
+        </div>
             <button type="submit">Register</button>
         </form>
 
         <p>Sudah punya akun? <a href="login.php">Login di sini</a></p>
     </div>
 </body>
-<<<<<<< HEAD
 </html>
-=======
 
 </html>
->>>>>>> e969dd9d99e22a88f7e21b96197583aacce20645

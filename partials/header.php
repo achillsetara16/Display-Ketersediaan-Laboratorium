@@ -38,7 +38,7 @@ $user = $_SESSION['user'] ?? ['profile_photo_path' => null];
         echo 'Dashboard';
         break;
       case 'status-dosen.php':
-        echo 'Status Dosen';
+        echo 'Status Lecturer';
         break;
       case 'status-rooms.php':
         echo 'Status Rooms';
@@ -47,13 +47,13 @@ $user = $_SESSION['user'] ?? ['profile_photo_path' => null];
         echo 'List Ruangan';
         break;
       case 'add-matkul.php':
-        echo 'Tambah Matkul';
+        echo 'Add Matkul';
         break;
       case 'tambah-ruangan.php':
-        echo 'Tambah Ruangan';
+        echo 'Add Rooms';
         break;
       default:
-        echo 'Halaman';
+        echo 'Home';
     }
   ?>
 </span>

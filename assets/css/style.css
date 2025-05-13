@@ -1,65 +1,86 @@
-/* Reset default styles */
+/* Reset and Global Styles */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* Body background soft grey */
 body {
     font-family: 'Inter', sans-serif;
-    background-color: #D9D9D9;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
+    background-color: #D9D9D9;
     color: #17252A;
 }
 
-/* Form container */
+/* Form Container (Shared for Login & Register) */
 .form-container {
     background-color: #ffffff;
-    padding: 48px; /* diperbesar */
+    padding: 48px;
     border-radius: 16px;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
     width: 100%;
-    max-width: 540px; /* diperbesar dari 420px */
+    max-width: 540px;
     text-align: center;
     border-top: 8px solid #2B7A78;
 }
 
 /* Heading */
-h2 {
+.form-container h2 {
     margin-bottom: 32px;
-    font-size: 32px; /* lebih besar */
+    font-size: 32px;
     font-weight: 700;
     color: #2B7A78;
 }
 
-/* Input and select */
-input, select {
-    width: 100%;
-    padding: 14px 16px; /* lebih besar */
+/* Input Group for login/register */
+.input-group {
+    display: flex;
+    align-items: center;
     margin: 16px 0;
-    border-radius: 10px;
-    border: 1.5px solid #ccc;
-    font-size: 18px;
     background-color: #f1f1f1;
-    transition: all 0.3s ease;
+    border: 1.5px solid #ccc;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+/* Icon */
+.input-group .icon {
+    background: #eee;
+    padding: 14px;
+    font-size: 18px;
+    color: #333;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 50px;
+}
+
+/* Input & Select */
+.input-group input,
+.input-group select {
+    border: none;
+    padding: 14px 16px;
+    width: 100%;
+    font-size: 18px;
+    background: transparent;
+    outline: none;
     color: #17252A;
 }
 
-input:focus, select:focus {
-    border-color: #2B7A78;
+/* Focus */
+.input-group input:focus,
+.input-group select:focus {
     background-color: #ffffff;
-    outline: none;
 }
 
-/* Button style */
+/* Button Style */
 button {
     width: 100%;
     padding: 14px;
-    background-color: #2B7A78;
+    background-color: #4CAF50;
     color: white;
     border: none;
     border-radius: 10px;
@@ -67,37 +88,26 @@ button {
     font-weight: 600;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    margin-top: 16px;
 }
 
 button:hover {
-    background-color: #3AAFA9;
+    background-color: #45a049;
 }
 
-/* Error message */
+/* Error Message */
 .error {
     color: #e63946;
     font-size: 16px;
     margin-top: 12px;
 }
 
-/* Bottom link */
-p {
-    margin-top: 24px;
-    font-size: 16px;
-    color: #555;
-}
-
-p a {
-    color: #2B7A78;
-    text-decoration: none;
-}
-
-p a:hover {
-    text-decoration: underline;
-}
-
-/* Disabled option */
+/* Disabled Option */
 select option[disabled] {
     color: #999;
     background-color: #eee;
+}
+
+select:focus option[disabled] {
+    display: none;
 }
