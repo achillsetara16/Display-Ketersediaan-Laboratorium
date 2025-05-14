@@ -4,25 +4,21 @@
     </div>
 <?php endif; ?>
 
-<!-- Header Background & Avatar -->
-<!-- Container Header -->
 <div class="relative w-full h-[250px]">
-  <!-- Background Header -->
-  <img src="https://vojislavd.com/ta-template-demo/assets/img/profile-background.jpg"
-       class="w-full h-full object-cover rounded-tl-lg rounded-tr-lg" />
+    <!-- Background Header -->
+    <img src="https://vojislavd.com/ta-template-demo/assets/img/profile-background.jpg"
+        class="w-full h-full object-cover rounded-tl-lg rounded-tr-lg" />
 
-  <!-- Avatar Profil -->
-  <div class="absolute inset-x-0 -bottom-14 flex justify-center">
-    <img class="w-28 h-28 rounded-full border-4 border-white bg-white shadow-md object-cover"
-         src="<?= $user['profile_photo_path'] ? '../storage/' . $user['profile_photo_path'] : 'https://th.bing.com/th/id/OIP.Icb6-bPoeUmXadkNJbDP4QHaHa?pid=ImgDet&w=178&h=178&c=7&dpr=1,5' ?>"
-         alt="Foto Profil" />
-  </div>
+    <div class="absolute inset-x-0 -bottom-14 flex justify-center">
+        <img class="w-28 h-28 rounded-full border-4 border-white bg-white shadow-md object-cover"
+            src="<?= $user['profile_photo_path'] ? '../storage/' . $user['profile_photo_path'] : 'https://th.bing.com/th/id/OIP.Icb6-bPoeUmXadkNJbDP4QHaHa?pid=ImgDet&w=178&h=178&c=7&dpr=1,5' ?>"
+            alt="Foto Profil" />
+    </div>
 </div>
 
-<!-- Teks Nama dan Email -->
 <div class="text-center mt-20">
-  <p class="text-xl font-semibold"><?= htmlspecialchars($user['nama_lengkap']) ?></p>
-  <p class="text-gray-600"><?= htmlspecialchars($user['email']) ?></p>
+    <p class="text-xl font-semibold"><?= htmlspecialchars($user['nama_lengkap']) ?></p>
+    <p class="text-gray-600"><?= htmlspecialchars($user['email']) ?></p>
 </div>
 
 <div class="mx-auto my-10 p-5 bg-white shadow-lg rounded-lg border border-black-200">
@@ -59,7 +55,8 @@
 
 <div class="flex justify-center mt-6">
     <a href="edit-profile.php">
-        <button class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded-md shadow-sm transition">
+        <button
+            class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded-md shadow-sm transition">
             Edit Profile
         </button>
     </a>

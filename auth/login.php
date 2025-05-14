@@ -86,18 +86,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <p class="error"><?= htmlspecialchars($error) ?></p>
         <?php endif; ?>
         <form action="login.php" method="POST">
-            
-        <!-- Email -->
-        <div class="input-group">
-            <div class="icon"><i class="fas fa-envelope"></i></div>
-            <input type="email" placeholder="Email" name="email" required>
-        </div>
 
-        <!-- Password -->
-        <div class="input-group">
-            <div class="icon"><i class="fas fa-lock"></i></div>
-            <input type="password" placeholder="Password" name="password" required>
-        </div>
+            <!-- Email -->
+            <div class="input-group">
+                <div class="icon"><i class="fas fa-envelope"></i></div>
+                <input type="email" placeholder="Email" name="email" required>
+            </div>
+
+            <!-- Password -->
+            <div class="input-group">
+                <div class="icon"><i class="fas fa-lock"></i></div>
+                <input type="password" placeholder="Password" name="password" required>
+            </div>
 
         <!-- Role -->
         <div class="input-group">
@@ -115,6 +115,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <p>Don't have an account? <a href="register.php">Sign up</a></p>
     </div>
 </body>
+
 </html>
 
 </html>

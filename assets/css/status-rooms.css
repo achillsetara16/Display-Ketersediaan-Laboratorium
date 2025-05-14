@@ -1,15 +1,19 @@
 /* Styling Main Content */
 .main-content {
-    padding-left: 40px; /* Menambahkan padding kiri yang lebih besar */
-    margin-top: 80px; /* Menambahkan margin-top untuk memberikan jarak antara header dan tabel */
+    padding-left: 40px;
+    /* Menambahkan padding kiri yang lebih besar */
+    margin-top: 80px;
+    /* Menambahkan margin-top untuk memberikan jarak antara header dan tabel */
 }
 
 /* Styling Tabel */
 table {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 20px; /* Menambahkan margin top untuk memberikan ruang lebih pada tabel */
-    margin-left: 40px; /* Menambahkan margin kiri untuk lebih jauh dari sidebar */
+    margin-top: 20px;
+    /* Menambahkan margin top untuk memberikan ruang lebih pada tabel */
+    margin-left: 40px;
+    /* Menambahkan margin kiri untuk lebih jauh dari sidebar */
 }
 
 table th,
@@ -65,7 +69,9 @@ table tr:hover td {
 
 /* Responsif */
 @media (max-width: 768px) {
-    table th, table td {
+
+    table th,
+    table td {
         font-size: 12px;
     }
 }

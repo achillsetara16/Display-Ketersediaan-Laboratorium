@@ -2,7 +2,6 @@
 session_start();
 include '../config/db.php';
 
-// Cek login
 if (!isset($_SESSION['user_id'])) {
     header("Location: ../login.php");
     exit();
@@ -111,8 +110,8 @@ unset($_SESSION['success']);
         <div class="bg-white p-6 rounded-lg shadow-md">
             <?php include '../partials/profile_view.php'; ?>
         </div>
-    </main>
+    </div>
 
-</div>
+
 </body>
 </html>

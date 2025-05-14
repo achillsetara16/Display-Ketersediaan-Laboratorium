@@ -3,7 +3,6 @@
 <link rel="stylesheet" href="../assets/css/list-ruangan.css">
 
 
-<!-- MAIN CONTENT -->
 <div class="main-content">
     <div class="card">
         <h2>Daftar Ruangan</h2>
@@ -45,5 +44,5 @@
         </table>
     </div>
 </div>
-
+<!-- Footer -->
 <?php include('../partials/footer.php'); ?>

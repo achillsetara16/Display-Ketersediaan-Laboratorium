@@ -1,11 +1,9 @@
-<?php 
-    // Menyertakan header, sidebar, dan footer
-    include('../partials/header.php'); 
-    include('../partials/sidebar.php'); 
+<?php
+include('../partials/header.php');
+include('../partials/sidebar.php');
 ?>
 <link rel="stylesheet" href="../assets/css/status-rooms.css">
 
-<!-- MAIN CONTENT -->
 <div class="main-content">
     <div class="card">
         <h2>Status Ruangan Saat Ini</h2>
@@ -20,9 +18,7 @@
                 </tr>
             </thead>
             <tbody>
-                <!-- Data Status Ruangan dimasukkan dengan PHP -->
                 <?php
-                // Simulasi data dengan lebih banyak data ruangan
                 $statusData = [
                     ['id' => 1, 'kode' => 'R101', 'nama' => 'Lab Komputer', 'gedung' => 'Gedung A', 'status' => 'Available'],
                     ['id' => 2, 'kode' => 'R102', 'nama' => 'Lab Jaringan', 'gedung' => 'Gedung B', 'status' => 'In Use'],
@@ -35,7 +31,7 @@
                     ['id' => 9, 'kode' => 'R109', 'nama' => 'Lab Robotika', 'gedung' => 'Gedung E', 'status' => 'Available'],
                     ['id' => 10, 'kode' => 'R110', 'nama' => 'Lab Pemrograman', 'gedung' => 'Gedung F', 'status' => 'In Use']
                 ];
-                
+
                 foreach ($statusData as $room) {
                     $statusClass = $room['status'] === 'Available' ? 'status-available' : 'status-inuse';
                     echo "
@@ -54,7 +50,7 @@
     </div>
 </div>
 
-<?php 
-    // Menyertakan footer
-    include('../partials/footer.php'); 
+<?php
+// <!-- Footer -->
+include('../partials/footer.php');
 ?>
