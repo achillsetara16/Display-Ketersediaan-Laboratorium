@@ -28,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $nama_lengkap = $_POST['nama_lengkap'];
 
     if ($password !== $password_confirmation) {
-        $error = "Password dan konfirmasi password tidak sama!";
+        $error = "Password and confirmation password do not match!";
     } else {
         $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
@@ -37,7 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
         if ($user) {
-            $error = "Email sudah terdaftar!";
+            $error = "Email is already registered!";
         } else {
             $stmt = $pdo->prepare("INSERT INTO users (email, password, role, nama_lengkap) VALUES (:email, :password, :role, :nama_lengkap)");
             $stmt->execute([
@@ -103,8 +103,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
             <button type="submit">Register</button>
         </form>
-
-        <p>Sudah punya akun? <a href="login.php">Login di sini</a></p>
+            <br>
+        <p>Do you already have an account? <a href="login.php">Login here</a></p>
     </div>
 </body>
 </html>

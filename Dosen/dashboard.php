@@ -5,12 +5,12 @@
 <div class="content">
   <div class="container">
     <div class="card">
-      <h3>Status Ruangan</h3>
+      <h3>Room Status</h3>
       <div id="daftarRuangan"></div>
     </div>
 
     <div class="card table-card">
-      <h3>Jadwal Saat Ini</h3>
+      <h3>Current Schedule</h3>
       <table id="jadwalTable">
         <thead>
           <tr>
@@ -68,7 +68,7 @@
     </div>
 
     <div class="card">
-      <h3>Statistik Penggunaan</h3>
+      <h3>Usage Statistics</h3>
       <canvas id="ruangChart" height="200"></canvas>
     </div>
   </div>

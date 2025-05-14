@@ -28,7 +28,7 @@
         <option value="6">Semester 6</option>
       </select>
 
-      <button type="submit">Simpan</button>
+      <button type="submit">Save</button>
     </form>
   </div>
 </div>

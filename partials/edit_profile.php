@@ -18,7 +18,7 @@ unset($_SESSION['success']);
 $error = null;
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $name = trim($_POST['name']);
+    $nama_lengkap = trim($_POST['nama_lengkap']);
     $email = trim($_POST['email']);
     $bio = trim($_POST['bio']);
     $status = trim($_POST['status']);
@@ -49,12 +49,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (!$error) {
         $stmt = $pdo->prepare("
             UPDATE users 
-            SET name = :name, email = :email, bio = :bio, 
+            SET nama_lengkap = :nama_lengkap, email = :email, bio = :bio, 
                  profile_photo_path = :profile_photo_path 
             WHERE id = :user_id
         ");
         $stmt->execute([
-            'name' => $name,
+            'nama_lengkap' => $nama_lengkap,
             'email' => $email,
             'bio' => $bio,
             'profile_photo_path' => $profile_photo_path,

@@ -31,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $role = $_POST['role'];
 
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        $error = "Format email tidak valid!";
+        $error = "Invalid email format!";
     } else {
         $stmt = $pdo->prepare("SELECT * FROM users WHERE email = :email");
         $stmt->execute(['email' => $email]);
@@ -41,6 +41,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_SESSION['user_id'] = $user['id'];
             $_SESSION['role'] = $user['role'];
             $_SESSION['nama_lengkap'] = $user['nama_lengkap'];
+
+            // Update status jadi 'active' saat login
+    $updateStatus = $pdo->prepare("UPDATE users SET status = 'active' WHERE id = :id");
+    $updateStatus->execute([':id' => $user['id']]);
 
             switch ($user['role']) {
                 case 'super_admin':
@@ -99,7 +103,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <div class="input-group">
             <div class="icon"><i class="fas fa-user-gear"></i></div>
             <select name="role" required>
-                <option value="" disabled selected>Status</option>
+                <option value="" disabled selected>Role</option>
                 <option value="dosen">Dosen</option>
                 <option value="laboran">Laboran</option>
                 <option value="superadmin">Super Admin</option>
@@ -107,6 +111,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
             <button type="submit">Login</button>
         </form>
+        <br>
+        <p>Don't have an account? <a href="register.php">Sign up</a></p>
     </div>
 </body>
 </html>

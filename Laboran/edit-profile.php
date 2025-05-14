@@ -9,7 +9,7 @@ if (!isset($_SESSION['user_id'])) {
 }
 
 $user_id = $_SESSION['user_id'];
-$stmt = $pdo->prepare("SELECT * FROM users WHERE id = :id AND role = 'dosen'");
+$stmt = $pdo->prepare("SELECT * FROM users WHERE id = :id AND role = 'laboran'");
 $stmt->execute(['id' => $user_id]);
 $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
@@ -81,7 +81,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 <body class="bg-gray-100">
 <div class="max-w-3xl mx-auto mt-10 bg-white p-8 rounded shadow">
-    <h1 class="text-2xl font-semibold text-center mb-6">Edit Profil Dosen</h1>
+    <h1 class="text-2xl font-semibold text-center mb-6">Edit Profil Laboran</h1>
 
     <?php if ($success): ?>
         <div class="bg-green-100 text-green-700 p-3 mb-4 rounded"><?= htmlspecialchars($success) ?></div>

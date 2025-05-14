@@ -25,7 +25,7 @@
   <p class="text-gray-600"><?= htmlspecialchars($user['email']) ?></p>
 </div>
 
-<div class="mx-auto my-10 p-5 bg-white shadow-lg rounded-lg">
+<div class="mx-auto my-10 p-5 bg-white shadow-lg rounded-lg border border-black-200">
     <h2 class="py-2 px-4 border-b border-gray-200 font-semibold text-2xl">Personal Info:</h2>
     <table class="min-w-full bg-white">
         <tbody>

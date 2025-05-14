@@ -5,19 +5,19 @@
 
 <div class="main-content">
     <div class="card">
-      <h2 id="pageCaption">Perbarui Status Kehadiran Anda</h2>
+      <h2 id="pageCaption">Update Your Attendance Status</h2>
       <form id="statusForm">
-        <label for="status">Status Saat Ini:</label>
+        <label for="status">Current Status:</label>
         <select id="status">
-          <option value="Ada">Ada di Ruang Dosen</option>
-          <option value="Tidak Ada">Tidak Ada di Ruang Dosen</option>
+          <option value="Ada">In the Lecturer's Room</option>
+          <option value="Tidak Ada">Not in the Lecturer's Room</option>
         </select>
-        <button type="submit">Simpan Status</button>
+        <button type="submit">Save Status</button>
       </form>
 
       <div class="status-display" id="displayStatus">
         <span class="status-icon" id="iconStatus">⏳</span>
-        Status saat ini: <span id="currentStatus">Belum diset</span>
+        Status saat ini: <span id="currentStatus">Not set yet</span>
       </div>
     </div>
   </div>

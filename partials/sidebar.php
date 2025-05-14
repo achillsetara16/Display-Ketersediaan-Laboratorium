@@ -14,10 +14,10 @@ $current = basename($_SERVER['PHP_SELF']);
   <div class="border"></div>
   <ul class="nav-links">
     <?php if ($role === 'laboran'): ?>
-      <li><a href="../laboran/dashboard_laboran.php" class="<?= $current == 'dashboard_laboran.php' ? 'active' : '' ?>">Dashboard</a></li>
-      <li><a href="../laboran/list-ruangan.php" class="<?= $current == 'list-ruangan.php' ? 'active' : '' ?>">List Ruangan</a></li>
-      <li><a href="../laboran/add-matkul.php" class="<?= $current == 'add-matkul.php' ? 'active' : '' ?>">Add Matkul</a></li>
-      <li><a href="../laboran/status-rooms.php" class="<?= $current == 'status-rooms.php' ? 'active' : '' ?>">Status Rooms</a></li>
+      <li><a href="../laboran/dashboard_laboran.php" class="<?= $current == 'dashboard_laboran.php' ? 'active' : '' ?>"><i class="bi bi-house-door-fill icon"></i>Dashboard</a></li>
+      <li><a href="../laboran/list-ruangan.php" class="<?= $current == 'list-ruangan.php' ? 'active' : '' ?>"><i class="bi bi-building"></i>List Ruangan</a></li>
+      <li><a href="../laboran/add-matkul.php" class="<?= $current == 'add-matkul.php' ? 'active' : '' ?>"><i class="bi bi-plus-circle"></i>Add Matkul</a></li>
+      <li><a href="../laboran/status-rooms.php" class="<?= $current == 'status-rooms.php' ? 'active' : '' ?>"><i class="bi bi-list-task"></i>Status Rooms</a></li>
 
     <?php elseif ($role === 'dosen'): ?>
       <li><a href="../dosen/dashboard.php" class=" <?= $current == 'dashboard.php' ? 'active' :  '' ?>"><i class="bi bi-house-door-fill icon"></i>Dashboard</a></li>
