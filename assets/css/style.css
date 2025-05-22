@@ -11,7 +11,8 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: #D9D9D9;
+    background: url('../../image/flat-lay-desk-with-laptop-headphones.jpg') no-repeat center center fixed;
+    background-size: cover;
     color: #17252A;
 }
 

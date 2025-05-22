@@ -21,7 +21,7 @@
 
     <nav class="bg-[#2B7A78] flex justify-between items-center px-12 py-4">
         <div class="flex items-center text-[2.5rem] text-white font-bold">
-            <img src="../assets/image/Logo Polibatam 2024.png" alt="Logo" class="w-24 h-auto mr-4">
+            <img src="../image/poltek.png" alt="Logo" class="w-24 h-auto mr-4">
             SKIL
         </div>
         <div class="flex items-center text-2xl gap-12 text-white">
