@@ -6,8 +6,8 @@ include '../config/db.php';
 if (isset($_SESSION['user_id'])) {
     $role = $_SESSION['role'];
     switch ($role) {
-        case 'super_admin':
-            header("Location: ../Super_Admin/masteradmin.php");
+        case 'superadmin':
+            header("Location: ../Super_Admin/dashboard.php");
             break;
         case 'laboran':
             header("Location: ../laboran/dashboard_laboran.php");
@@ -48,7 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             switch ($user['role']) {
                 case 'super_admin':
-                    header("Location: ../Super_Admin/masteradmin.php");
+                    header("Location: ../Super_Admin/dashboard.php");
                     break;
                 case 'laboran':
                     header("Location: ../Laboran/dashboard_laboran.php");
@@ -115,7 +115,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <p>Don't have an account? <a href="register.php">Sign up</a></p>
     </div>
 </body>
-
-</html>
 
 </html>

@@ -91,13 +91,13 @@ body {
     /* Mengatur posisi vertikal ke tengah */
     height: 80px;
     /* Atur tinggi container logo */
-    padding: 10px;
+    padding: 60px;
     /* Berikan jarak sedikit di sekitar logo */
 }
 
 .sidebar .logo-container img {
     width: 100%;
-    height: auto;
+    height: auto;z
     max-width: 120px;
     /* Atur ukuran maksimal gambar */
     max-height: 120px;

@@ -10,7 +10,7 @@ if ($role === 'dosen') {
   $profileLink = '../laboran/profile.php';
 }
 elseif ($role === 'masteradmin') {
-  $profileLink = '../Super_Admin/masteradmin.php';
+  $profileLink = '../Super_Admin/profile.php';
 }
 
 $user = $_SESSION['user'] ?? ['profile_photo_path' => null];

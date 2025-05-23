@@ -8,7 +8,7 @@ if (isset($_SESSION['user_id'])) {
 
     // Redirect sesuai role
     if ($role === 'superadmin') {
-        header("Location: ../Super_Admin/masteradmin.php");
+        header("Location: ../Super_Admin/dashboard.php");
     } elseif ($role === 'laboran') {
         header("Location: ../Laboran/dashboard_laboran.php");
     } elseif ($role === 'dosen') {

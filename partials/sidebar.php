@@ -25,12 +25,12 @@ $current = basename($_SERVER['PHP_SELF']);
       <li><a href="../dosen/status-dosen.php" class="<?= $current == 'status-dosen.php' ? 'active' : '' ?>"><i
             class="bi bi-person-check-fill icon"></i>Status Dosen</a></li>
 
-    <?php elseif ($role === 'super_admin'): ?>
-      <li><a href="../Super_Admin/masteradmin.php"
-          class="<?= $current == 'masteradmin.php' ? 'active' : '' ?>">Dashboard</a></li>
+    <?php elseif ($role === 'superadmin'): ?>
+      <li><a href="../Super_Admin/dashboard.php"
+          class="<?= $current == 'dashboard.php' ? 'active' : '' ?>">Dashboard</a></li>
       <li><a href="../Super_Admin/list-ruangan.php" class="<?= $current == 'list-ruangan.php' ? 'active' : '' ?>">List
           Ruangan</a></li>
-      <li><a href="../Super_Admin/add-matkul.php" class="<?= $current == 'add-matkul.php' ? 'active' : '' ?>">Add
+      <li><a href="../Super_Admin/addmatkul.php" class="<?= $current == 'addmatkul.php' ? 'active' : '' ?>">Add
           Matkul</a></li>
       <li><a href="../Super_Admin/status-rooms.php" class="<?= $current == 'status-rooms.php' ? 'active' : '' ?>">Status
           Rooms</a></li>
