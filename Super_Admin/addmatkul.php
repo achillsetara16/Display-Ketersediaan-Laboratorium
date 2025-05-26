@@ -7,7 +7,7 @@
 <div class="main">
   <div class="card">
     <h2>Form Tambah Matakuliah</h2>
-    <form>
+   <form action="proses_tambah_matkul.php" method="POST">
       <label for="kode">Kode Matakuliah</label>
       <input type="text" id="kode" name="kode" placeholder="Contoh: IF1234" required>
 
