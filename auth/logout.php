@@ -8,7 +8,7 @@ if (isset($_SESSION['user_id'])) {
     $updateStatus->execute([':id' => $_SESSION['user_id']]);
 }
 
-// Hancurkan sesi dan alihkan ke halaman login
+// Hancurkan sesi dan alihkan ke halaman home
 session_destroy();
-header("Location: login.php");
+header("Location: ../public/index.php");
 exit;

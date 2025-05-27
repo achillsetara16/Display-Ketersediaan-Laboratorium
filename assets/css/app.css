@@ -1,54 +1,45 @@
-/* Custom font (bisa pakai Google Fonts di HTML, ini tambahan) */
 body {
-    font-family: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
 }
 
-/* Glowing border effect */
-@keyframes glowing-border {
-    0% {
-        box-shadow: 0 0 5px #1e3a8a, 0 0 10px #1e3a8a;
-    }
-
-    50% {
-        box-shadow: 0 0 15px #1e3a8a, 0 0 25px #3b82f6;
-    }
-
-    100% {
-        box-shadow: 0 0 5px #1e3a8a, 0 0 10px #1e3a8a;
-    }
+.container {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 20px;
 }
 
-.glow-border {
-    animation: glowing-border 1.5s infinite alternate;
-    position: relative;
-    overflow: hidden;
-    border-radius: 0.5rem;
-    /* Optional: Tailwind-style rounding */
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: x-large;
 }
 
-.glow-border::before {
-    content: "";
-    position: absolute;
-    top: -2px;
-    left: -2px;
-    right: -2px;
-    bottom: -2px;
-    border-radius: inherit;
-    border: 3px solid transparent;
-    background: linear-gradient(45deg, #3b82f6, #1e3a8a, #3b82f6, #1e3a8a);
-    background-size: 300% 300%;
-    animation: border-rotate 3s linear infinite;
-    z-index: -1;
+.contact-form label {
+  display: block;
+  margin-top: 10px;
 }
 
-@keyframes border-rotate {
-    0% {
-        transform: rotate(0deg);
-        filter: hue-rotate(0deg);
-    }
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
 
-    100% {
-        transform: rotate(360deg);
-        filter: hue-rotate(360deg);
-    }
+.contact-form button {
+  margin-top: 15px;
+  padding: 10px 20px;
+  border: none;
+  background-color: #0077cc;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.contact-form button:hover {
+  background-color: #005fa3;
 }

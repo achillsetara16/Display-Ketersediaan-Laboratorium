@@ -26,8 +26,8 @@
         </div>
         <div class="flex items-center text-2xl gap-12 text-white">
             <a href="/Display-Ketersediaan-Laboratorium/public/index.php" class="hover:underline">Home</a>
-            <a href="/Display-Ketersediaan-Laboratorium/public/contact.php" class="hover:underline">Contact Us</a>
-            <a href="/Display-Ketersediaan-Laboratorium/public/about.php" class="hover:underline">About Us</a>
+            <a href="/Display-Ketersediaan-Laboratorium/public/contact_us.php" class="hover:underline">Contact Us</a>
+            <a href="/Display-Ketersediaan-Laboratorium/public/about_us.php" class="hover:underline">About Us</a>
             <a href="/Display-Ketersediaan-Laboratorium/auth/login.php" class="hover:underline">Login</a>
         </div>
     </nav>

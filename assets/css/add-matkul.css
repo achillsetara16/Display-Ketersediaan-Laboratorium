@@ -12,12 +12,12 @@ body {
 }
 
 /* === TOPBAR === */
-.topbar {
+/* .topbar {
   position: fixed;
   top: 0;
-  left: 250px;
+  left: 250px; */
   /* ruang untuk sidebar */
-  right: 0;
+  /* right: 0;
   height: 60px;
   background-color: #1e2a47;
   display: flex;
@@ -28,17 +28,17 @@ body {
   color: #ffffff;
   font-size: 20px;
   font-weight: 600;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); */
+/* }
 
 .topbar .title {
   font-size: 20px;
-}
+} */
 
-.topbar .profile-icon {
+/* .topbar .profile-icon {
   font-size: 22px;
   cursor: pointer;
-}
+} */
 
 /* === MAIN CONTENT AREA === */
 .main {

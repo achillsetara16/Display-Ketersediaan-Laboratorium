@@ -1,21 +1,34 @@
 <?php include('../partials/header.php'); ?>
 <?php include('../partials/sidebar.php'); ?>
+<?php include ('../config/db.php'); ?>
 <link rel="stylesheet" href="../assets/css/add-matkul.css">
 
 
 <!-- Main content -->
 <div class="main">
   <div class="card">
-    <h2>Form Tambah Matakuliah</h2>
+    <h2>Form Add Courses</h2>
     <form>
-      <label for="kode">Kode Matakuliah</label>
-      <input type="text" id="kode" name="kode" placeholder="Contoh: IF1234" required>
+      <label for="day">Day</label>
+      <input type="text" id="day" name="day" placeholder="Example: Thursday" required>
 
-      <label for="nama">Nama Matakuliah</label>
-      <input type="text" id="nama" name="nama" placeholder="Contoh: Pemrograman Web" required>
+      <label for="start_time">Start Time</label>
+      <input type="time" id="start_time" name="start_time" placeholder="Example: 20:30" required>
 
-      <label for="sks">Jumlah SKS</label>
-      <input type="number" id="sks" name="sks" min="1" max="6" required>
+      <label for="end_time">End Time</label>
+      <input type="time" id="end_time" name="end_time" placeholder="Example: 22:30" required>
+
+      <label for="courses">Courses</label>
+      <input type="text" id="courses" name="courses" placeholder="Example: IF420 Mata Kuliah Pilihan 2" required>
+
+      <label for="lecturer">Lecturer</label>
+      <input type="text" id="lecturer" name="lecturer" placeholder="Example: Hamdani Arif" required>
+
+      <label for="room">Room</label>
+      <input type="text" id="room" name="room" placeholder="Example: Ta. 11.4" required>
+
+      <label for="class">Class</label>
+      <input type="text" id="class" name="class" placeholder="Example: 4C" required>
 
       <label for="semester">Semester</label>
       <select id="semester" name="semester" required>
