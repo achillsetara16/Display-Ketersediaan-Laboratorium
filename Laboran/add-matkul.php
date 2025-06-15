@@ -8,7 +8,7 @@
 <div class="main">
   <div class="card">
     <h2>Form Add Courses</h2>
-    <form>
+   <form action="add_course.php" method="POST">
       <label for="day">Day</label>
       <input type="text" id="day" name="day" placeholder="Example: Thursday" required>
 

@@ -49,7 +49,7 @@ $user = $_SESSION['user'] ?? ['profile_photo_path' => null];
           echo 'Status Rooms';
           break;
         case 'list-ruangan.php':
-          echo 'List Ruangan';
+          echo 'Rooms List';
           break;
         case 'addmatkul.php':
           echo 'Add Matkul';

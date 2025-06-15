@@ -28,8 +28,7 @@ $current = basename($_SERVER['PHP_SELF']);
     <?php elseif ($role === 'superadmin'): ?>
       <li><a href="../Super_Admin/dashboard.php"
           class="<?= $current == 'dashboard.php' ? 'active' : '' ?>">Dashboard</a></li>
-      <li><a href="../Super_Admin/list-ruangan.php" class="<?= $current == 'list-ruangan.php' ? 'active' : '' ?>">List
-          Ruangan</a></li>
+      <li><a href="../Super_Admin/list-ruangan.php" class="<?= $current == 'list-ruangan.php' ? 'active' : '' ?>">Rooms List</a></li>
       <li><a href="../Super_Admin/addmatkul.php" class="<?= $current == 'addmatkul.php' ? 'active' : '' ?>">Add Courses</a></li>
       <li><a href="../Super_Admin/list_matkul.php" class="<?= $current == 'list_matkul.php' ? 'active' : '' ?>">Course List
       </a></li>
