@@ -1,34 +1,52 @@
-<?php include('../partials/header.php'); ?>
-<?php include('../partials/sidebar.php'); ?>
-<?php include ('../config/db.php'); ?>
-<link rel="stylesheet" href="../assets/css/add-matkul.css">
+<?php
+include('../partials/header.php');
+include('../partials/sidebar.php');
+include('../config/db.php');
 
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Ambil data dari form
+    $day = $_POST['day'];
+    $start_time = $_POST['start_time'];
+    $end_time = $_POST['end_time'];
+    $course = $_POST['courses'];
+    $lecturer = $_POST['lecturer'];
+    $class = $_POST['class'];
+    $semester = $_POST['semester'];
+    $room_id = isset($_POST['room_id']) ? $_POST['room_id'] : null;
+    // Simpan data ke tabel courses
+    $stmt = $pdo->prepare("INSERT INTO courses (day, start_time, end_time, course, lecturer, class, semester)
+                       VALUES (?, ?, ?, ?, ?, ?, ?)");
+    $stmt->execute([$day, $start_time, $end_time, $course, $lecturer, $class, $semester]);
+
+
+    echo "<p style='color: green;'>Data mata kuliah berhasil disimpan ke tabel courses.</p>";
+}
+?>
+
+<link rel="stylesheet" href="../assets/css/add-matkul.css">
 
 <!-- Main content -->
 <div class="main">
   <div class="card">
     <h2>Form Add Courses</h2>
-    <form>
+    <form action="" method="POST">
       <label for="day">Day</label>
-      <input type="text" id="day" name="day" placeholder="Example: Thursday" required>
+      <input type="text" id="day" name="day" required>
 
       <label for="start_time">Start Time</label>
-      <input type="time" id="start_time" name="start_time" placeholder="Example: 20:30" required>
+      <input type="time" id="start_time" name="start_time" required>
 
       <label for="end_time">End Time</label>
-      <input type="time" id="end_time" name="end_time" placeholder="Example: 22:30" required>
+      <input type="time" id="end_time" name="end_time" required>
 
       <label for="courses">Courses</label>
-      <input type="text" id="courses" name="courses" placeholder="Example: IF420 Mata Kuliah Pilihan 2" required>
+      <input type="text" id="courses" name="courses" required>
 
       <label for="lecturer">Lecturer</label>
-      <input type="text" id="lecturer" name="lecturer" placeholder="Example: Hamdani Arif" required>
-
-      <label for="room">Room</label>
-      <input type="text" id="room" name="room" placeholder="Example: Ta. 11.4" required>
+      <input type="text" id="lecturer" name="lecturer" required>
 
       <label for="class">Class</label>
-      <input type="text" id="class" name="class" placeholder="Example: 4C" required>
+      <input type="text" id="class" name="class" required>
 
       <label for="semester">Semester</label>
       <select id="semester" name="semester" required>
@@ -46,5 +64,4 @@
   </div>
 </div>
 
-<!-- Footer -->
 <?php include('../partials/footer.php'); ?>
