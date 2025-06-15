@@ -51,14 +51,15 @@ $user = $_SESSION['user'] ?? ['profile_photo_path' => null];
         case 'list-ruangan.php':
           echo 'List Ruangan';
           break;
-        case 'add-matkul.php':
+        case 'addmatkul.php':
           echo 'Add Matkul';
           break;
         case 'tambah-ruangan.php':
           echo 'Add Rooms';
           break;
-        default:
-          echo 'Home';
+         case 'list_matkul.php':
+          echo 'Courses List';
+          break;
       }
       ?>
     </span>

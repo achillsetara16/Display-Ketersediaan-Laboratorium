@@ -30,12 +30,13 @@ $current = basename($_SERVER['PHP_SELF']);
           class="<?= $current == 'dashboard.php' ? 'active' : '' ?>">Dashboard</a></li>
       <li><a href="../Super_Admin/list-ruangan.php" class="<?= $current == 'list-ruangan.php' ? 'active' : '' ?>">List
           Ruangan</a></li>
-      <li><a href="../Super_Admin/addmatkul.php" class="<?= $current == 'addmatkul.php' ? 'active' : '' ?>">Add
-          Matkul</a></li>
+      <li><a href="../Super_Admin/addmatkul.php" class="<?= $current == 'addmatkul.php' ? 'active' : '' ?>">Add Courses</a></li>
+      <li><a href="../Super_Admin/list_matkul.php" class="<?= $current == 'list_matkul.php' ? 'active' : '' ?>">Course List
+      </a></li>
       <li><a href="../Super_Admin/status-rooms.php" class="<?= $current == 'status-rooms.php' ? 'active' : '' ?>">Status
           Rooms</a></li>
       <li><a href="../Super_Admin/tambah-ruangan.php"
-          class="<?= $current == 'tambah-ruangan.php' ? 'active' : '' ?>">Tambah Ruangan</a></li>
+          class="<?= $current == 'tambah-ruangan.php' ? 'active' : '' ?>">Add Rooms</a></li>
 
     <?php else: ?>
       <li><span>Role tidak dikenali.</span></li>
