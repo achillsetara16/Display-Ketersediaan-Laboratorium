@@ -75,3 +75,17 @@ table td button {
 table td button:hover {
   background-color: #c0392b;
 }
+.aksi-cell {
+  border-radius: 4px;        /* sudut membulat */
+  padding: 4px;              /* ruang dalam */
+  text-align: center;        /* rata tengah isi */
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* bayangan halus */
+}
+.aksi-cell select {
+  padding: 6px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  background-color: white;
+  cursor: pointer;
+}
+

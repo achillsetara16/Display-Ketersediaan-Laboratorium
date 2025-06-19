@@ -3,8 +3,11 @@ include('../partials/header.php');
 include('../partials/sidebar.php');
 include('../config/db.php');
 
+// Ambil daftar ruangan dari tabel rooms
+$roomStmt = $pdo->query("SELECT code, name FROM rooms");
+$rooms = $roomStmt->fetchAll(PDO::FETCH_ASSOC);
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Ambil data dari form
     $day = $_POST['day'];
     $start_time = $_POST['start_time'];
     $end_time = $_POST['end_time'];
@@ -13,19 +16,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $class = $_POST['class'];
     $semester = $_POST['semester'];
     $room_id = isset($_POST['room_id']) ? $_POST['room_id'] : null;
-    // Simpan data ke tabel courses
-    $stmt = $pdo->prepare("INSERT INTO courses (day, start_time, end_time, course, lecturer, class, semester)
-                       VALUES (?, ?, ?, ?, ?, ?, ?)");
-    $stmt->execute([$day, $start_time, $end_time, $course, $lecturer, $class, $semester]);
 
+    // Simpan ke tabel courses (dengan room_id)
+    $stmt = $pdo->prepare("INSERT INTO courses (day, start_time, end_time, course, lecturer, class, semester, room_id)
+                           VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+    $stmt->execute([$day, $start_time, $end_time, $course, $lecturer, $class, $semester, $room_id]);
 
     echo "<p style='color: green;'>Data mata kuliah berhasil disimpan ke tabel courses.</p>";
 }
 ?>
 
+
 <link rel="stylesheet" href="../assets/css/add-matkul.css">
 
-<!-- Main content -->
 <div class="main">
   <div class="card">
     <h2>Form Add Courses</h2>
@@ -47,7 +50,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
       <label for="class">Class</label>
       <input type="text" id="class" name="class" required>
-
+      
       <label for="semester">Semester</label>
       <select id="semester" name="semester" required>
         <option value="">-- Pilih Semester --</option>
@@ -57,6 +60,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <option value="4">Semester 4</option>
         <option value="5">Semester 5</option>
         <option value="6">Semester 6</option>
+      </select>
+
+      <label for="room_id">Room</label>
+      <select id="room_id" name="room_id" required>
+        <option value="">-- Pilih Ruangan --</option>
+        <?php foreach ($rooms as $room): ?>
+            <option value="<?= htmlspecialchars($room['code']) ?>">
+                <?= htmlspecialchars($room['code']) . " - " . htmlspecialchars($room['name']) ?>
+            </option>
+        <?php endforeach; ?>
       </select>
 
       <button type="submit">Save</button>
