@@ -1,0 +1,76 @@
+/* RESET & BASE STYLING */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #f4f7fa;
+  color: #333;
+}
+
+.main {
+  margin-left: 250px;
+  /* ruang untuk sidebar */
+  padding: 80px 40px 40px;
+  /* atas 80px untuk topbar */
+}
+
+/* === CARD === */
+.card {
+  max-width: 700px;
+  margin: auto;
+  background-color: #ffffff;
+  padding: 30px;
+  border-radius: 16px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+}
+
+.card h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #1e2a47;
+}
+
+/* === FORM ELEMENTS === */
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  margin-bottom: 6px;
+  font-weight: 500;
+  color: #333;
+  text-align: left;
+}
+
+input,
+select {
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 14px;
+ 
+}
+
+
+
+/* === BUTTON === */
+button {
+  background-color: #3498db;
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #2980b9;
+}
