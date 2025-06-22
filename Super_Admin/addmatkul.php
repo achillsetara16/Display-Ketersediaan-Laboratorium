@@ -17,12 +17,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $semester = $_POST['semester'];
     $room_id = isset($_POST['room_id']) ? $_POST['room_id'] : null;
 
-    // Simpan ke tabel courses (dengan room_id)
-    $stmt = $pdo->prepare("INSERT INTO courses (day, start_time, end_time, course, lecturer, class, semester, room_id)
-                           VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
-    $stmt->execute([$day, $start_time, $end_time, $course, $lecturer, $class, $semester, $room_id]);
+    // Cek status ruangan
+    $statusStmt = $pdo->prepare("SELECT status FROM rooms WHERE code = ?");
+    $statusStmt->execute([$room_id]);
+    $status = $statusStmt->fetchColumn();
 
-    echo "<p style='color: green;'>Data mata kuliah berhasil disimpan ke tabel courses.</p>";
+    if ($status === 'In Use') {
+        echo "<script>alert('Ruangan sedang dipakai! Silakan pilih ruangan lain.');</script>";
+    } else {
+        // Jika ruangan Available, baru simpan
+        $stmt = $pdo->prepare("INSERT INTO courses (day, start_time, end_time, course, lecturer, class, semester, room_id)
+                              VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+        $stmt->execute([$day, $start_time, $end_time, $course, $lecturer, $class, $semester, $room_id]);
+        
+        // Ubah status ruangan jadi In Use (opsional)
+        $updateStatus = $pdo->prepare("UPDATE rooms SET status = 'In Use' WHERE code = ?");
+        $updateStatus->execute([$room_id]);
+
+        echo "<script>alert('Data berhasil disimpan!');</script>";
+}
 }
 ?>
 

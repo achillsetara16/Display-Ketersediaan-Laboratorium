@@ -146,6 +146,7 @@ body {
    STATUS BADGE
 -------------------------------------------------- */
 .status {
+<<<<<<< HEAD
   display: inline-block;
   padding: 4px 8px;
   border-radius: 12px;
@@ -162,6 +163,59 @@ body {
 .status.terpakai {
   background: #e74c3c;
   color: #fff;
+=======
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 0.95rem;
+    font-weight: bold;
+    text-transform: capitalize;
+}
+.daftarRuangan {
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* Jarak antar baris */
+    font-family: 'Segoe UI', sans-serif;
+    padding-left: 1px;
+}
+.daftarRuangan p {
+    margin: 0;
+    font-size: 16px;
+    display: flex;
+    padding-bottom: 4px;
+    max-width: 300px; /* Optional: atur lebar tetap agar rata */
+}
+.daftarRuangan p strong {
+    width: 120px; /* agar kode ruangan rata kiri */   
+}
+.baris-ruangan {
+    display: flex;
+    gap: 1px; /* spasi antar elemen */
+    margin-bottom: 6px;
+    font-size: 16px;
+    align-items: center;
+}
+
+.label {
+    font-weight: bold;
+    min-width: 20px; /* lebar tetap agar sejajar */
+}
+
+.kode {
+    font-weight: bold;
+    min-width: 80px; /* agar kodenya sejajar */
+}
+
+.status {
+    font-style: italic;
+}
+
+.status-merah {
+    color: red;
+}
+
+.status-hijau {
+    color: green;
+>>>>>>> 632b3485ae5bfecc8b49ea961f72004de26c1ed7
 }
 
 #daftarRuangan p {

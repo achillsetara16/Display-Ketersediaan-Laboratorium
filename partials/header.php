@@ -60,6 +60,12 @@ $user = $_SESSION['user'] ?? ['profile_photo_path' => null];
          case 'list_matkul.php':
           echo 'Courses List';
           break;
+           case 'users_list.php':
+          echo 'Users List';
+          break;
+           case 'loan_data.php':
+          echo 'Loan Data';
+          break;
       }
       ?>
     </span>
