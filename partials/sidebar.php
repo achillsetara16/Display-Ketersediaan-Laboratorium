@@ -18,7 +18,7 @@ $current = basename($_SERVER['PHP_SELF']);
        <li><a href="../Super_Admin/tambah-ruangan.php" class="<?= $current == 'tambah-ruangan.php' ? 'active' : '' ?>"><i class="bi bi-plus-circle"></i> Rooms</a></li>
       <li><a href="../laboran/list-ruangan.php" class="<?= $current == 'list-ruangan.php' ? 'active' : '' ?>"><i class="bi bi-building"></i>Rooms List</a></li>
       <li><a href="../laboran/add-matkul.php" class="<?= $current == 'add-matkul.php' ? 'active' : '' ?>"><i class="bi bi-plus-circle"></i>Add Courses</a></li>
-       <li><a href="../laboran/list_matkul.php" class="<?= $current == 'list_matkul.php' ? 'active' : '' ?>"><i class="bi bi-building"></i>List</a></li>
+       <li><a href="../laboran/list_matkul.php" class="<?= $current == 'list_matkul.php' ? 'active' : '' ?>"><i class="bi bi-building"></i>Courses List</a></li>
 
     <?php elseif ($role === 'dosen'): ?>
       <li><a href="../dosen/dashboard.php" class=" <?= $current == 'dashboard.php' ? 'active' : '' ?>"><i
