@@ -1,5 +1,5 @@
 <footer>
-  <div class="text-center text-sm text-white py-5">
+  <div class="text-center text-sm text-white py-5 px-5">
     &copy; <?= date('Y') ?> Polibatam. All rights reserved.
   </div>
 </footer>

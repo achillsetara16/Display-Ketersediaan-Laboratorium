@@ -78,7 +78,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <form action="register.php" method="POST">
             <div class="input-group">
                 <div class="icon"><i class="fas fa-user"></i></div>
-                <input type="text" name="nama_lengkap" placeholder="Nama Lengkap" required>
+                <input type="text" name="nama_lengkap" placeholder="Full Name" required>
             </div>
 
             <div class="input-group">

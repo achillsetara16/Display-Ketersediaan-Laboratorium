@@ -17,7 +17,6 @@
             </thead>
             <tbody>
                 <?php
-                // Contoh data ruangan (bisa diganti dengan data dari database)
                 $dataRuangan = [
                     ['id' => 1, 'kode_ruangan' => 'R101', 'nama_ruangan' => 'Lab Komputer', 'building' => 'Gedung A'],
                     ['id' => 2, 'kode_ruangan' => 'R102', 'nama_ruangan' => 'Lab Jaringan', 'building' => 'Gedung B'],
