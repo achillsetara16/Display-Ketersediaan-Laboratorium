@@ -95,6 +95,10 @@ unset($_SESSION['success']);
     background-color: #ddd;
     margin: 20px 20px;  /* Jarak garis dari logo dan sisi kiri-kanan */
 }
+
+.gradient-bg {
+    background: linear-gradient(135deg, #2d1b69 0%, #11998e 100%);
+}
     </style>
 
 <!-- Layout Utama -->
@@ -106,7 +110,7 @@ unset($_SESSION['success']);
     </aside>
 
     <!-- Konten Utama -->
-    <main class="flex-1 p-2">
+    <main class="gradient-bg flex-1 p-2">
         <div class="bg-white p-6 rounded-lg shadow-md">
             <?php include '../partials/profile_view.php'; ?>
         </div>

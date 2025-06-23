@@ -11,17 +11,16 @@
   <!-- Flowbite CDN -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.css" rel="stylesheet" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.js"></script>
-  <link rel="stylesheet" href="../assets/css/app.css">
 </head>
 
 <body class="min-h-screen flex flex-col">
 
-  <footer class="w-full bg-[DarkCyan] text-white">
+  <footer class="w-full bg-[#2B7A78] text-white">
     <div class="w-full px-6 py-10 grid md:grid-cols-2 gap-15">
 
       <div class="flex flex-col items-center md:items-start text-center md:text-left">
         <img src="../image/poltek.png" alt="Logo Polibatam" class="w-40 h-auto mb-2">
-        <h1 class="text-2xl font-bold mb-1">SIKL</h1>
+        <h1 class="text-2xl font-bold mb-1">NoLab</h1>
         <p class="text-lg">Politeknik Negeri Batam</p>
       </div>
 

@@ -6,7 +6,12 @@ $role = $_SESSION['role'] ?? null;
 $current = basename($_SERVER['PHP_SELF']);
 ?>
 
-<div class="sidebar">
+<!-- Tombol toggle sidebar -->
+<button id="toggleSidebar" class="md:hidden fixed top-4 left-4 z-50 text-white text-3xl">
+  &#9776;
+</button>
+
+<div id="sidebar" class="sidebar fixed top-0 left-0 w-64 h-full bg-[#2B7A78] text-white z-40 transform -translate-x-full transition-transform duration-300 ease-in-out md:translate-x-0 md:relative md:block">
   <div class="logo-container">
     <img src="../image/poltek.png" alt="Logo Kampus">
   </div>
@@ -39,3 +44,12 @@ $current = basename($_SERVER['PHP_SELF']);
     <?php endif; ?>
   </ul>
 </div>
+
+<script>
+  const toggleBtn = document.getElementById('toggleSidebar');
+  const sidebar = document.getElementById('sidebar');
+
+  toggleBtn?.addEventListener('click', () => {
+    sidebar.classList.toggle('-translate-x-full');
+  });
+</script>

@@ -27,7 +27,7 @@
         <tbody>
             <tr>
                 <td class="py-2 px-4 border-b border-gray-200 font-semibold">Full Name</td>
-                <td class="py-2 px-4 border-b border-gray-200"><?= htmlspecialchars($user['nama_lengkap']) ?></td>
+                <td class="py-2 px-4 border-b border-gray-200"><?= ucwords(strtolower(htmlspecialchars($user['nama_lengkap']))) ?></td>
             </tr>
             <tr>
                 <td class="py-2 px-4 border-b border-gray-200 font-semibold">Email</td>
@@ -39,13 +39,13 @@
             </tr>
             <tr>
                 <td class="py-2 px-4 border-b border-gray-200 font-semibold">Role</td>
-                <td class="py-2 px-4 border-b border-gray-200"><?= htmlspecialchars($user['role'] ?? '-') ?></td>
+                <td class="py-2 px-4 border-b border-gray-200"><?= ucwords(strtolower(htmlspecialchars($user['role']))) ?></td>
             </tr>
             <tr>
                 <td class="py-2 px-4 border-b border-gray-200 font-semibold">Status</td>
                 <td class="py-2 px-4 border-b border-gray-200">
                     <span class="<?= $user['status'] === 'active' ? 'text-green-600' : 'text-red-600' ?>">
-                        <?= htmlspecialchars($user['status'] ?? '-') ?>
+                        <?= ucwords(strtolower(htmlspecialchars($user['status']))) ?>
                     </span>
                 </td>
             </tr>
@@ -61,3 +61,10 @@
         </button>
     </a>
 </div>
+
+<script>
+    setTimeout(() => {
+        const alert = document.querySelector('.bg-green-500');
+        if (alert) alert.remove();
+    }, 3000); // hilang setelah 3 detik
+</script>
