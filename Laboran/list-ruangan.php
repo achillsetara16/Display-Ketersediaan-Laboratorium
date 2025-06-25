@@ -48,7 +48,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </thead>
             <tbody>
                 <?php
-<<<<<<< HEAD
                 $dataRuangan = [
                     ['id' => 1, 'kode_ruangan' => 'R101', 'nama_ruangan' => 'Lab Komputer', 'building' => 'Gedung A'],
                     ['id' => 2, 'kode_ruangan' => 'R102', 'nama_ruangan' => 'Lab Jaringan', 'building' => 'Gedung B'],
@@ -61,11 +60,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     ['id' => 9, 'kode_ruangan' => 'R109', 'nama_ruangan' => 'Lab Multimedia', 'building' => 'Gedung I'],
                     ['id' => 10, 'kode_ruangan' => 'R110', 'nama_ruangan' => 'Lab Desain Grafis', 'building' => 'Gedung J']
                 ];
-=======
-                try {
-                    $stmt = $pdo->query("SELECT * FROM rooms");
-                    $rooms = $stmt->fetchAll(PDO::FETCH_ASSOC);
->>>>>>> 80d5be913c39463276dd06de4c4334ac28153529
 
                     foreach ($rooms as $row) {
                         echo "<tr>";

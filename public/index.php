@@ -260,7 +260,7 @@
                     </div>
                 </div>
 
-                <button class="menu-button" onclick="window.location.href='/display/classroom'">
+                <button class="menu-button" onclick="window.location.href='display_class.php'">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
                         <path d="M8,5.14V19.14L19,12.14L8,5.14Z"/>
                     </svg>
@@ -302,7 +302,7 @@
                     </div>
                 </div>
 
-                <button class="menu-button">
+                <button class="menu-button"  onclick="window.location.href='display_dosen.php'">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
                         <path d="M8,5.14V19.14L19,12.14L8,5.14Z"/>
                     </svg>
