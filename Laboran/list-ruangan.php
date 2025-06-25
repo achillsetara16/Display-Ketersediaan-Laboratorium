@@ -59,9 +59,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </thead>
             <tbody>
                 <?php
+<<<<<<< HEAD
                 try {
                     $stmt = $pdo->query("SELECT * FROM rooms");
                     $rooms = $stmt->fetchAll(PDO::FETCH_ASSOC);
+=======
+                $dataRuangan = [
+                    ['id' => 1, 'kode_ruangan' => 'R101', 'nama_ruangan' => 'Lab Komputer', 'building' => 'Gedung A'],
+                    ['id' => 2, 'kode_ruangan' => 'R102', 'nama_ruangan' => 'Lab Jaringan', 'building' => 'Gedung B'],
+                    ['id' => 3, 'kode_ruangan' => 'R103', 'nama_ruangan' => 'Lab IoT', 'building' => 'Gedung C'],
+                    ['id' => 4, 'kode_ruangan' => 'R104', 'nama_ruangan' => 'Lab Mekatronika', 'building' => 'Gedung D'],
+                    ['id' => 5, 'kode_ruangan' => 'R105', 'nama_ruangan' => 'Lab Elektronika', 'building' => 'Gedung E'],
+                    ['id' => 6, 'kode_ruangan' => 'R106', 'nama_ruangan' => 'Lab Kimia', 'building' => 'Gedung F'],
+                    ['id' => 7, 'kode_ruangan' => 'R107', 'nama_ruangan' => 'Lab Fisika', 'building' => 'Gedung G'],
+                    ['id' => 8, 'kode_ruangan' => 'R108', 'nama_ruangan' => 'Lab Biologi', 'building' => 'Gedung H'],
+                    ['id' => 9, 'kode_ruangan' => 'R109', 'nama_ruangan' => 'Lab Multimedia', 'building' => 'Gedung I'],
+                    ['id' => 10, 'kode_ruangan' => 'R110', 'nama_ruangan' => 'Lab Desain Grafis', 'building' => 'Gedung J']
+                ];
+>>>>>>> abca6619bdf4691a07d0f3db7cf40cdaddea8e94
 
                     foreach ($rooms as $row) {
                         echo "<tr>";
