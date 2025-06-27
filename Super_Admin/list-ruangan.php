@@ -9,7 +9,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Handle Update Status
         $room_id = $_POST['room_id'];
         $new_status = $_POST['new_status'];
-
         $updateStmt = $pdo->prepare("UPDATE rooms SET status = :new_status WHERE id = :room_id");
         $updateStmt->execute([
             ':new_status' => $new_status,

@@ -208,6 +208,22 @@
             box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
         }
     </style>
+    <?php
+        include('../config/db.php'); // koneksi database
+
+        // Query jumlah total ruangan
+        $totalStmt = $pdo->query("SELECT COUNT(*) FROM rooms");
+        $totalRooms = $totalStmt->fetchColumn();
+
+        // Query jumlah ruangan available
+        $availableStmt = $pdo->query("SELECT COUNT(*) FROM rooms WHERE status = 'Available'");
+        $availableRooms = $availableStmt->fetchColumn();
+
+        // Query jumlah ruangan in use
+        $inUseStmt = $pdo->query("SELECT COUNT(*) FROM rooms WHERE status = 'In Use'");
+        $inUseRooms = $inUseStmt->fetchColumn();
+        ?>
+
 </head>
 
 <body>
@@ -244,27 +260,26 @@
                     <li>Regular Classrooms</li>
                     <li>Studios & Workshops</li>
                 </ul>
-
-                <div class="menu-stats">
+                <div class="menu-stats"> 
                     <div class="menu-stat">
-                        <div class="menu-stat-number" id="classroomTotal">24</div>
+                        <div class="menu-stat-number" id="classroomTotal"><?= $totalRooms ?></div>
                         <div class="menu-stat-label">Total Rooms</div>
                     </div>
                     <div class="menu-stat">
-                        <div class="menu-stat-number" id="classroomAvailable">18</div>
+                        <div class="menu-stat-number" id="classroomAvailable"><?= $availableRooms ?></div>
                         <div class="menu-stat-label">Available</div>
                     </div>
                     <div class="menu-stat">
-                        <div class="menu-stat-number" id="classroomOccupied">4</div>
+                        <div class="menu-stat-number" id="classroomOccupied"><?= $inUseRooms ?></div>
                         <div class="menu-stat-label">In Use</div>
                     </div>
                 </div>
 
-                <button class="menu-button" onclick="window.location.href='/display/classroom'">
+                <button class="menu-button" onclick="window.location.href='../public/display_class.php'">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
                         <path d="M8,5.14V19.14L19,12.14L8,5.14Z"/>
                     </svg>
-                   View Classroom Display
+                     View Classroom Display
                 </button>
             </div>
 
