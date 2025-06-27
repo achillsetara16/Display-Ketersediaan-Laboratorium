@@ -3,7 +3,7 @@ $page_title = "Room Status";
 include 'header_display.php';
 
 $currentSchedule = [
-  'room'     => 'Room TA 11.4',
+  'room'     => 'Room GU.601',
   'status'   => 'used',
   'lecturer' => 'Banu Failasuf, S.Tr',
   'course'   => 'Basis Data',
@@ -11,7 +11,7 @@ $currentSchedule = [
 ];
 
 $nextSchedule = [
-  'room'     => 'Room TA 11.4',
+  'room'     => 'Room GU.601',
   'status'   => 'next',
   'lecturer' => 'Suwarno, S.S., M.Pd',
   'course'   => 'Bahasa Inggris',
