@@ -5,7 +5,7 @@
 <?php endif; ?>
 
 <div class="relative w-full h-[250px]">
-    <!-- Background Header -->
+    
     <img src="https://vojislavd.com/ta-template-demo/assets/img/profile-background.jpg"
         class="w-full h-full object-cover rounded-tl-lg rounded-tr-lg" />
 
@@ -21,7 +21,7 @@
     <p class="text-gray-600"><?= htmlspecialchars($user['email']) ?></p>
 </div>
 
-<div class="mx-auto my-10 p-5 bg-white shadow-lg rounded-lg border border-black-200">
+<div class="mx-auto my-10 p-5 bg-white shadow-lg rounded-lg border border-gray-200">
     <h2 class="py-2 px-4 border-b border-gray-200 font-semibold text-2xl">Personal Info:</h2>
     <table class="min-w-full bg-white">
         <tbody>
