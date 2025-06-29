@@ -1,7 +1,8 @@
 <?php include('../partials/header.php'); ?>
 <?php include('../partials/sidebar.php'); ?>
-<?php include('../config/db.php'); ?>
+<?php require('../config/db.php'); ?>
 <link rel="stylesheet" href="../assets/css/list-ruangan.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/2.1.8/css/dataTables.dataTables.css">
 
 <?php
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -89,3 +90,4 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </table>
     </div>
 </div>
+<script src="https://cdn.datatables.net/2.1.8/js/dataTables.js"></script>
