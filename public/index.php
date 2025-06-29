@@ -8,10 +8,9 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     body {
-      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+       background: linear-gradient(135deg, #2d1b69 0%, #11998e 100%);
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
-
     .hero h1 {
       font-size: 3.5rem;
       font-weight: 800;
