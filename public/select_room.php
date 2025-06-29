@@ -6,12 +6,12 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     :root {
-      --bg: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+        background: linear-gradient(135deg, #2d1b69 0%, #11998e 100%);
       --glass: rgba(255, 255, 255, 0.04);
       --border: rgba(255, 255, 255, 0.08);
       --text-main: #ffffff;
       --text-muted: rgba(255, 255, 255, 0.7);
-      --accent: #00c6ff;
+      --accent:rgb(243, 243, 243);
     }
 
     html, body {
@@ -61,7 +61,7 @@
 
     .card:hover {
       transform: translateY(-6px) scale(1.02);
-      box-shadow: 0 18px 32px rgba(0, 0, 0, 0.3);
+      box-shadow: 0 18px 32px rgba(14, 106, 226, 0.45);
       background-color: rgba(255, 255, 255, 0.06);
     }
 
@@ -69,7 +69,7 @@
       width: 64px;
       height: 64px;
       margin: 0 auto 1.2rem;
-      background: linear-gradient(45deg, #00c6ff,rgb(20, 133, 240));
+      background: linear-gradient(45deg,rgb(0, 225, 255),rgb(0, 96, 240));
       border-radius: 0.75rem;
       display: flex;
       align-items: center;
