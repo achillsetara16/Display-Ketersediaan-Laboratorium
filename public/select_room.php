@@ -132,34 +132,31 @@
     <p class="subtitle">Choose a room below to access real-time monitoring details.</p>
 
     <div class="grid-room">
-      <?php
-        $rooms = [
-          "GU 601" => "display_GU601.php",
-          "TA 10.3" => "display_TA103.php",
-          "GU 702" => "display_GU702.php",
-          "GU 805" => "display_GU805.php",
-          "GU 701" => "display_GU701.php",
-          "GU 706" => "display_GU706.php",
-          "GU 704" => "display_GU704.php",
-          "TA 11.5B" => "display_TA115B.php",
-          "TA 11.4" => "display_TA114.php",
-          "GU 604" => "display_GU604.php",
-          "TA 11.3" => "display_TA113.php"
-        ];
+ <?php
+      include('../config/db.php'); // koneksi ke DB pakai $pdo
 
-        foreach ($rooms as $name => $file) {
-          echo "
-            <a href='{$file}' class='card'>
-              <div class='icon'>
-                <svg viewBox='0 0 24 24'>
-                  <path d='M2,3V21H4V19H20V21H22V3H20V17H4V3H2Z'/>
-                </svg>
-              </div>
-              <div class='room-name'>{$name}</div>
-              <div class='room-sub'>Click to view display</div>
-            </a>
-          ";
-        }
+      try {
+          $stmt = $pdo->query("SELECT code, name FROM rooms ORDER BY code ASC");
+
+          while ($room = $stmt->fetch(PDO::FETCH_ASSOC)):
+              $roomCode = $room['code'];
+              $roomName = htmlspecialchars($room['name'] ?? $room['code']);
+              $link = "display_class.php?room=" . urlencode($roomCode);
+      ?>
+        <a href="<?= $link ?>" class="card">
+          <div class="icon">
+            <svg viewBox="0 0 24 24">
+              <path d="M2,3V21H4V19H20V21H22V3H20V17H4V3H2Z" />
+            </svg>
+          </div>
+          <div class="room-name"><?= htmlspecialchars($roomCode) ?></div>
+          <div class="room-sub">Click to view display</div>
+        </a>
+      <?php
+          endwhile;
+      } catch (PDOException $e) {
+          echo "<p style='color:red;'>Database error: " . $e->getMessage() . "</p>";
+      }
       ?>
     </div>
   </div>
