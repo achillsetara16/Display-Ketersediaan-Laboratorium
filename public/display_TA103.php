@@ -1,58 +1,23 @@
 <?php
 $page_title = "Room Status";
 include 'header_display.php';
-include '../config/db.php'; // Pastikan koneksi $pdo aktif
-
-$roomCode = isset($_GET['room']) ? $_GET['room'] : null;
-
-if (!$roomCode) {
-    echo "<p style='color:red; text-align:center;'>No room selected.</p>";
-    exit;
-}
-date_default_timezone_set('Asia/Jakarta');
-$currentTime = date('H:i');
-$currentDay = strtolower(date('l')); // Contoh: 'monday'
-
-// Ambil status ruangan dari tabel `rooms`
-$stmtStatus = $pdo->prepare("SELECT status FROM rooms WHERE code = ?");
-$stmtStatus->execute([$roomCode]);
-$statusRoom = strtolower($stmtStatus->fetchColumn()) ?? 'available'; // bisa 'in use', dll
-
-// Ambil jadwal saat ini
-$stmtCurrent = $pdo->prepare("SELECT course, lecturer, start_time, end_time FROM courses 
-  WHERE room_id = ? AND day = ? AND start_time <= ? AND end_time >= ?
-  ORDER BY start_time ASC LIMIT 1");
-$stmtCurrent->execute([$roomCode, $currentDay, $currentTime, $currentTime]);
-$rowCurrent = $stmtCurrent->fetch(PDO::FETCH_ASSOC);
 
 $currentSchedule = [
-  'room'     => 'Room ' . $roomCode,
-  'status'   => $statusRoom === 'in use' ? 'used' : 'available',
-  'lecturer' => $rowCurrent['lecturer'] ?? '-',
-  'course'   => $rowCurrent['course'] ?? '-',
-  'time'     => isset($rowCurrent['start_time']) 
-                  ? date('H:i', strtotime($rowCurrent['start_time'])) . ' – ' . date('H:i', strtotime($rowCurrent['end_time'])) 
-                  : '-'
+  'room'     => 'Room TA 11.4',
+  'status'   => 'used',
+  'lecturer' => 'Banu Failasuf, S.Tr',
+  'course'   => 'Basis Data',
+  'time'     => '08:00 – 10:00'
 ];
-
-// Ambil jadwal berikutnya
-$stmtNext = $pdo->prepare("SELECT course, lecturer, start_time, end_time FROM courses 
-  WHERE room_id = ? AND day = ? AND start_time > ?
-  ORDER BY start_time ASC LIMIT 1");
-$stmtNext->execute([$roomCode, $currentDay, $currentTime]);
-$rowNext = $stmtNext->fetch(PDO::FETCH_ASSOC);
 
 $nextSchedule = [
-  'room'     => 'Room ' . $roomCode,
+  'room'     => 'Room TA 11.4',
   'status'   => 'next',
-  'lecturer' => $rowNext['lecturer'] ?? '-',
-  'course'   => $rowNext['course'] ?? '-',
-  'time'     => isset($rowNext['start_time']) 
-                  ? date('H:i', strtotime($rowNext['start_time'])) . ' – ' . date('H:i', strtotime($rowNext['end_time'])) 
-                  : '-'
+  'lecturer' => 'Suwarno, S.S., M.Pd',
+  'course'   => 'Bahasa Inggris',
+  'time'     => '10:15 – 12:00'
 ];
 
-// Fungsi status tetap dipakai
 function getStatusTitle(string $s): string {
   return [
     'used'      => 'In Use',
@@ -61,6 +26,7 @@ function getStatusTitle(string $s): string {
   ][$s] ?? 'Unknown';
 }
 ?>
+
 <!-- Google Fonts (Bebas Neue + Urbanist) -->
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Urbanist:wght@400;500;600;700&display=swap" rel="stylesheet">
 

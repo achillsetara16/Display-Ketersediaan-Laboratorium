@@ -1,9 +1,7 @@
 /* --------------------------------------------------
    RESET & DASAR
 -------------------------------------------------- */
-*,
-*::before,
-*::after {
+*, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -24,12 +22,12 @@ body {
 .topbar {
   position: fixed;
   top: 0;
-  left: 250px;               /* selaras dengan lebar sidebar */
+  left: 250px;
   right: 0;
   height: 60px;
   background-color: #17252A;
   color: #fff;
-  font-size: 1.375rem;       /* 22 px */
+  font-size: 1.375rem;
   font-weight: 700;
   display: flex;
   align-items: center;
@@ -84,7 +82,6 @@ body {
   border-left: 4px solid #3AAFA9;
 }
 
-/* logo */
 .sidebar .logo-container {
   display: flex;
   justify-content: center;
@@ -95,7 +92,7 @@ body {
 
 .sidebar .logo-container img {
   width: 100%;
-  height: auto;             /* ← perbaikan di sini */
+  height: auto;
   max-width: 120px;
   max-height: 120px;
   object-fit: contain;
@@ -111,12 +108,11 @@ body {
    KONTEN UTAMA
 -------------------------------------------------- */
 .content {
-  margin: 60px 0 0 250px;   /* topbar + sidebar */
+  margin: 60px 0 0 250px;
   padding: 1rem;
   flex-grow: 1;
 }
 
-/* GRID untuk kartu ruangan */
 .container {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -146,7 +142,6 @@ body {
    STATUS BADGE
 -------------------------------------------------- */
 .status {
-<<<<<<< HEAD
   display: inline-block;
   padding: 4px 8px;
   border-radius: 12px;
@@ -155,71 +150,40 @@ body {
   text-transform: capitalize;
 }
 
-.status.tersedia {
+.status-merah {
+  background: #e74c3c;
+  color: #fff;
+}
+
+.status-hijau {
   background: #27ae60;
   color: #fff;
 }
 
-.status.terpakai {
-  background: #e74c3c;
-  color: #fff;
-=======
-    padding: 4px 8px;
-    border-radius: 12px;
-    font-size: 0.95rem;
-    font-weight: bold;
-    text-transform: capitalize;
-}
 .daftarRuangan {
-    display: flex;
-    flex-direction: column;
-    gap: 10px; /* Jarak antar baris */
-    font-family: 'Segoe UI', sans-serif;
-    padding-left: 1px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-family: 'Segoe UI', sans-serif;
+  padding-left: 1px;
 }
-.daftarRuangan p {
-    margin: 0;
-    font-size: 16px;
-    display: flex;
-    padding-bottom: 4px;
-    max-width: 300px; /* Optional: atur lebar tetap agar rata */
-}
-.daftarRuangan p strong {
-    width: 120px; /* agar kode ruangan rata kiri */   
-}
+
 .baris-ruangan {
-    display: flex;
-    gap: 1px; /* spasi antar elemen */
-    margin-bottom: 6px;
-    font-size: 16px;
-    align-items: center;
+  display: flex;
+  gap: 1px;
+  margin-bottom: 6px;
+  font-size: 16px;
+  align-items: center;
 }
 
 .label {
-    font-weight: bold;
-    min-width: 20px; /* lebar tetap agar sejajar */
+  font-weight: bold;
+  min-width: 20px;
 }
 
 .kode {
-    font-weight: bold;
-    min-width: 80px; /* agar kodenya sejajar */
-}
-
-.status {
-    font-style: italic;
-}
-
-.status-merah {
-    color: red;
-}
-
-.status-hijau {
-    color: green;
->>>>>>> 632b3485ae5bfecc8b49ea961f72004de26c1ed7
-}
-
-#daftarRuangan p {
-  margin-bottom: 10px;
+  font-weight: bold;
+  min-width: 80px;
 }
 
 /* --------------------------------------------------
@@ -330,76 +294,79 @@ footer {
 -------------------------------------------------- */
 @media (max-width: 900px) {
   .container {
-    grid-template-columns: 1fr;   /* kartu turun jadi 1 kolom */
+    grid-template-columns: 1fr;
   }
 }
+
+/* --------------------------------------------------
+   PAGINATION & SEARCH
+-------------------------------------------------- */
 .pagination a {
-    padding: 6px 12px;
-    margin: 0 4px;
-    text-decoration: none;
-    border: 1px solid #ccc;
-    color: #333;
-    border-radius: 4px;
-    font-size: 14px;
-    transition: background-color 0.2s;
+  padding: 6px 12px;
+  margin: 0 4px;
+  text-decoration: none;
+  border: 1px solid #ccc;
+  color: #333;
+  border-radius: 4px;
+  font-size: 14px;
+  transition: background-color 0.2s;
 }
 
-.pagination a:hover {
-    background-color: #007bff;
-    color: white;
-    border-color: #007bff;
+.pagination a:hover,
+.pagination a.active {
+  background-color: #007bff;
+  color: white;
+  border-color: #007bff;
 }
 
 .pagination a.active {
-    background-color: #007bff;
-    color: white;
-    border-color: #007bff;
-    font-weight: bold;
-    text-decoration: underline;
+  font-weight: bold;
+  text-decoration: underline;
 }
+
 .pagination {
-    text-align: right;
-    margin-top: 15px;
+  text-align: right;
+  margin-top: 15px;
 }
+
 .entries-form {
-    width: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
 }
 
 .entries-control {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start; /* Penting agar tetap di kiri */
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
 }
 
 .entries-control label {
-    font-weight: bold;
+  font-weight: bold;
 }
 
 .entries-control select {
-    padding: 3px 6px;
-    font-size: 15px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    background-color: #f9f9f9;
-    cursor: pointer;
+  padding: 3px 6px;
+  font-size: 15px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  background-color: #f9f9f9;
+  cursor: pointer;
 }
+
 .search-control {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    justify-content: flex-end; /* dorong ke kanan */
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  justify-content: flex-end;
 }
+
 .search-control input {
- padding: 6px 12px;
+  padding: 6px 12px;
   font-size: 15px;
   border-radius: 5px;
   border: 1px solid #ccc;
 }
-.entries-form {
-  display: flex;
-  justify-content: space-between; /* entries kiri, search kanan */
-  align-items: center;
-  flex-wrap: wrap; /* biar responsif */
-  margin-bottom: 10px;
-}
-
