@@ -48,8 +48,7 @@ if (!empty($ruanganDipakai)) {
                     $kode = htmlspecialchars($room['code']);
                     $status = htmlspecialchars($room['status']);
                     $warnaClass = ($status === 'In Use') ? 'status-merah' : 'status-hijau';
-                    echo "<div class='baris-ruangan'><span class='label'>Ruang</span><span class='kode'>$kode</span><span class='status $warnaClass'>$status</span>
-                </div>";
+                    echo "<div class='baris-ruangan'><span class='label'>Ruang</span><span class='kode'>$kode</span><span class='status $warnaClass'>$status</span></div>";
                 }
                 ?>
             </div>
@@ -71,11 +70,13 @@ if (!empty($ruanganDipakai)) {
                     <?php
                     if (!empty($jadwalAktif)) {
                         foreach ($jadwalAktif as $row) {
+                            $start = date('H:i', strtotime($row['start_time']));
+                            $end = date('H:i', strtotime($row['end_time']));
                             echo "<tr>";
                             echo "<td>" . htmlspecialchars($row['room_id']) . "</td>";
                             echo "<td>" . htmlspecialchars($row['course']) . "</td>";
                             echo "<td>" . htmlspecialchars($row['lecturer']) . "</td>";
-                            echo "<td>" . htmlspecialchars($row['start_time']) . " - " . htmlspecialchars($row['end_time']) . "</td>";
+                            echo "<td>$start - $end</td>";
                             echo "</tr>";
                         }
                     } else {
@@ -85,6 +86,7 @@ if (!empty($ruanganDipakai)) {
                 </tbody>
             </table>
         </div>
+
         <!-- STATISTIK -->
         <div class="card">
             <h3>Statistik Penggunaan</h3>
@@ -111,8 +113,8 @@ $data = json_encode([$inUse, $available]);
 document.addEventListener('DOMContentLoaded', function () {
     const ctx = document.getElementById('ruangChart').getContext('2d');
 
-    const labels = <?= $labels ?>;  // ["In Use", "Available"]
-    const data = <?= $data ?>;      // [angka_in_use, angka_available]
+    const labels = <?= $labels ?>;
+    const data = <?= $data ?>;
     const total = data.reduce((a, b) => a + b, 0);
     const percentages = data.map(v => ((v / total) * 100).toFixed(1) + '%');
 
@@ -122,7 +124,7 @@ document.addEventListener('DOMContentLoaded', function () {
             labels: labels,
             datasets: [{
                 data: data,
-                backgroundColor: ['#ff4d4d', '#28a745'], // Merah & Hijau
+                backgroundColor: ['#ff4d4d', '#28a745'],
                 borderColor: '#fff',
                 borderWidth: 2
             }]
@@ -150,9 +152,9 @@ document.addEventListener('DOMContentLoaded', function () {
                 const meta = chart.getDatasetMeta(0);
 
                 meta.data.forEach((element, index) => {
-                    const {x, y} = element.tooltipPosition(); // Dapatkan posisi tengah irisan
+                    const {x, y} = element.tooltipPosition();
                     ctx.save();
-                    ctx.fillStyle = "#fff"; // Warna teks agar kontras
+                    ctx.fillStyle = "#fff";
                     ctx.font = "bold 14px sans-serif";
                     ctx.textAlign = "center";
                     ctx.textBaseline = "middle";
