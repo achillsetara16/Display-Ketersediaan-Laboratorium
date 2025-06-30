@@ -30,7 +30,9 @@ $currentSchedule = [
   'status'   => $statusRoom === 'in use' ? 'used' : 'available',
   'lecturer' => $rowCurrent['lecturer'] ?? '-',
   'course'   => $rowCurrent['course'] ?? '-',
-  'time'     => isset($rowCurrent['start_time']) ? $rowCurrent['start_time'] . ' – ' . $rowCurrent['end_time'] : '-'
+  'time'     => isset($rowCurrent['start_time']) 
+                  ? date('H:i', strtotime($rowCurrent['start_time'])) . ' – ' . date('H:i', strtotime($rowCurrent['end_time'])) 
+                  : '-'
 ];
 
 // Ambil jadwal berikutnya
@@ -45,7 +47,9 @@ $nextSchedule = [
   'status'   => 'next',
   'lecturer' => $rowNext['lecturer'] ?? '-',
   'course'   => $rowNext['course'] ?? '-',
-  'time'     => isset($rowNext['start_time']) ? $rowNext['start_time'] . ' – ' . $rowNext['end_time'] : '-'
+  'time'     => isset($rowNext['start_time']) 
+                  ? date('H:i', strtotime($rowNext['start_time'])) . ' – ' . date('H:i', strtotime($rowNext['end_time'])) 
+                  : '-'
 ];
 
 // Fungsi status tetap dipakai
