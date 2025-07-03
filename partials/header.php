@@ -51,8 +51,8 @@ $user = $_SESSION['user'] ?? ['profile_photo_path' => null];
         case 'list-ruangan.php':
           echo 'Rooms List';
           break;
-        case 'addmatkul.php':
-          echo 'Add Matkul';
+        case 'add-matkul.php':
+          echo 'Add Course';
           break;
         case 'tambah-ruangan.php':
           echo 'Add Rooms';
@@ -86,6 +86,7 @@ $user = $_SESSION['user'] ?? ['profile_photo_path' => null];
         </ul>
       </div>
     </div>
+    
 
 
     <!-- JavaScript -->

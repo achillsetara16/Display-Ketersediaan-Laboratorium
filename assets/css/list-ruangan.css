@@ -12,7 +12,7 @@ body {
 .main-content {
   margin-left: 250px;
   padding: 20px;
-  padding-top: 80px;
+  padding-top: 60px;
   overflow-y: auto;
 }
 
@@ -39,22 +39,21 @@ table {
   font-size: 15px;
 }
 
-table th,
-table td {
-  padding: 12px;
-  text-align: left;
-  border: 1px solid #cfd8dc;
-}
 
 table th {
   background-color: #3498db;
   color: white;
   text-transform: uppercase;
   letter-spacing: 0.7px;
+  text-align: center !important;
+  border: 1px solid #cfd8dc;
 }
 
 table td {
   background-color: #f9f9f9;
+  padding: 12px;
+  text-align: left;
+  border: 1px solid #cfd8dc;
 }
 
 table tr:hover td {
@@ -89,3 +88,6 @@ table td button:hover {
   cursor: pointer;
 }
 
+.dataTables_filter {
+  margin-bottom: 10px; /* atau 30px sesuai kebutuhan */
+}

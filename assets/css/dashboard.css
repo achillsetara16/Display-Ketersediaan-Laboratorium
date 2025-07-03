@@ -146,7 +146,6 @@ body {
    STATUS BADGE
 -------------------------------------------------- */
 .status {
-<<<<<<< HEAD
   display: inline-block;
   padding: 4px 8px;
   border-radius: 12px;
@@ -163,8 +162,7 @@ body {
 .status.terpakai {
   background: #e74c3c;
   color: #fff;
-=======
-    padding: 4px 8px;
+  padding: 4px 8px;
     border-radius: 12px;
     font-size: 0.95rem;
     font-weight: bold;
@@ -215,7 +213,6 @@ body {
 
 .status-hijau {
     color: green;
->>>>>>> 632b3485ae5bfecc8b49ea961f72004de26c1ed7
 }
 
 #daftarRuangan p {

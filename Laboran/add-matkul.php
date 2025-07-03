@@ -4,7 +4,7 @@ include('../partials/sidebar.php');
 include('../config/db.php');
 
 // Ambil daftar ruangan dari tabel rooms
-$roomStmt = $pdo->query("SELECT code, name FROM rooms");
+$roomStmt = $pdo->query("SELECT id, code, name FROM rooms");
 $rooms = $roomStmt->fetchAll(PDO::FETCH_ASSOC);
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -14,7 +14,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $course = $_POST['courses'];
     $lecturer = $_POST['lecturer'];
     $class = $_POST['class'];
-    $semester = $_POST['semester'];
+    $semester = $_POST['semester'] ?? null;
     $room_id = isset($_POST['room_id']) ? $_POST['room_id'] : null;
 
     // Simpan ke tabel courses (dengan room_id)
@@ -51,7 +51,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       <label for="class">Class</label>
       <input type="text" id="class" name="class" required>
       
-      <label for="semester">Semester</label>
+      <!-- <label for="semester">Semester</label>
       <select id="semester" name="semester" required>
         <option value="">-- Pilih Semester --</option>
         <option value="1">Semester 1</option>
@@ -60,17 +60,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <option value="4">Semester 4</option>
         <option value="5">Semester 5</option>
         <option value="6">Semester 6</option>
-      </select>
-
+      </select> -->
       <label for="room_id">Room</label>
-      <select id="room_id" name="room_id" required>
-        <option value="">-- Pilih Ruangan --</option>
-        <?php foreach ($rooms as $room): ?>
-            <option value="<?= htmlspecialchars($room['code']) ?>">
-                <?= htmlspecialchars($room['code']) . " - " . htmlspecialchars($room['name']) ?>
-            </option>
-        <?php endforeach; ?>
-      </select>
+      <select name="room_id" required>
+    <option value="">--Select Room--</option>
+    <?php foreach ($rooms as $room): ?>
+        <option value="<?= htmlspecialchars($room['id']) ?>">
+            <?= htmlspecialchars($room['code']) . " - " . htmlspecialchars($room['name']) ?>
+        </option>
+    <?php endforeach; ?>
+</select>
+
 
       <button type="submit">Save</button>
     </form>

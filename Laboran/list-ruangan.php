@@ -2,7 +2,15 @@
 <?php include('../partials/sidebar.php'); ?>
 <?php require('../config/db.php'); ?>
 <link rel="stylesheet" href="../assets/css/list-ruangan.css">
-<link rel="stylesheet" href="https://cdn.datatables.net/2.1.8/css/dataTables.dataTables.css">
+<!-- jQuery (wajib) -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<!-- DataTables CSS -->
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
+
+<!-- DataTables JS -->
+<script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+
 
 <?php
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -49,7 +57,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <tbody>
                 <?php
                 try {
-                    $stmt = $pdo->query("SELECT * FROM rooms");
+                   $currentDay = date('l'); // contoh: Monday
+                   $currentTime = date('H:i:s');
+
+                   $stmt = $pdo->query(
+                        "SELECT r.*, 
+                        EXISTS (
+                        SELECT 1 FROM courses c
+                        WHERE c.room_id = r.id
+                        AND c.day = '$currentDay'
+                        AND '$currentTime' BETWEEN c.start_time AND c.end_time
+                        ) AS is_in_use
+                            FROM rooms r
+                        ");
                     $rooms = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
                     foreach ($rooms as $row) {
@@ -58,7 +78,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         echo "<td>" . htmlspecialchars($row['code']) . "</td>";
                         echo "<td>" . htmlspecialchars($row['name']) . "</td>";
                         echo "<td>" . htmlspecialchars($row['building']) . "</td>";
-                        echo "<td>" . htmlspecialchars($row['status']) . "</td>";
+                        $status = $row['is_in_use'] ? 'in use' : 'available';
+                        echo "<td>" . $status . "</td>";
+
 
                         // Kolom Aksi
                         echo "<td class='aksi-cell'>";
@@ -68,8 +90,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         echo "<input type='hidden' name='room_id' value='" . $row['id'] . "'>";
                         echo "<select name='new_status' onchange='this.form.submit()'>";
                         echo "<option disabled selected>Edit Status</option>";
-                        echo "<option value='available'" . ($row['status'] === 'available' ? " disabled" : "") . ">Available</option>";
-                        echo "<option value='in use'" . ($row['status'] === 'in use' ? " disabled" : "") . ">In Use</option>";
+                        echo "<option value='available'" . ($status === 'available' ? " disabled" : "") . ">Available</option>";
+                        echo "<option value='in use'" . ($status === 'in use' ? " disabled" : "") . ">In Use</option>";
                         echo "</select>";
                         echo "</form>";
 
@@ -90,4 +112,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </table>
     </div>
 </div>
-<script src="https://cdn.datatables.net/2.1.8/js/dataTables.js"></script>
+
+<script>
+  $(document).ready(function() {
+    $('#roomTable').DataTable({
+      paging: true,
+      searching: true,
+      ordering: true,
+      info: true
+    });
+  });
+  
+</script>

@@ -25,6 +25,16 @@
     <h2 class="py-2 px-4 border-b border-gray-200 font-semibold text-2xl">Personal Info:</h2>
     <table class="min-w-full bg-white">
         <tbody>
+            <?php if ($user['role'] === 'dosen'): ?>
+            <tr>
+                <td class="py-2 px-4 border-b border-gray-200 font-semibold">NIK</td>
+                <td class="py-2 px-4 border-b border-gray-200"><?= htmlspecialchars($user['nik'] ?? '-') ?></td>
+            </tr>
+            <tr>
+                <td class="py-2 px-4 border-b border-gray-200 font-semibold">Program Studi</td>
+            <td class="py-2 px-4 border-b border-gray-200"><?= htmlspecialchars($user['prodi'] ?? '-') ?></td>
+            </tr>
+            <?php endif; ?>
             <tr>
                 <td class="py-2 px-4 border-b border-gray-200 font-semibold">Full Name</td>
                 <td class="py-2 px-4 border-b border-gray-200"><?= ucwords(strtolower(htmlspecialchars($user['nama_lengkap']))) ?></td>

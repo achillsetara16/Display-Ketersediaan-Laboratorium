@@ -12,12 +12,12 @@ body {
 .main-content {
   margin-left: 250px;
   padding: 20px;
-  padding-top: 80px;
+  padding-top: 60px;
   overflow-y: auto;
 }
 
 .card {
-  max-width: 1000px;
+  max-width: 10 00px;
   margin: auto;
   background-color: #ffffff;
   padding: 30px;
@@ -39,22 +39,21 @@ table {
   font-size: 15px;
 }
 
-table th,
-table td {
-  padding: 12px;
-  text-align: left;
-  border: 1px solid #cfd8dc;
-}
-
 table th {
   background-color: #3498db;
   color: white;
   text-transform: uppercase;
   letter-spacing: 0.7px;
+  padding: 12px;
+  text-align: center !important;
+  border: 1px solid #cfd8dc;
 }
 
 table td {
   background-color: #f9f9f9;
+  padding: 12px;
+  text-align: left;
+  border: 1px solid #cfd8dc;
 }
 
 table tr:hover td {
@@ -145,3 +144,88 @@ table td button:hover {
   margin-bottom: 10px;
 }
 
+.dataTables_filter {
+  margin-bottom: 10px; /* atau 30px sesuai kebutuhan */
+}
+
+/* Responsive Table Wrapper */
+.card {
+  overflow-x: auto; /* agar tabel bisa di-scroll horizontal jika lebar */
+}
+
+/* Responsive untuk layar kecil (max-width 768px) */
+@media (max-width: 768px) {
+  .main-content {
+    margin-left: 0;
+    padding: 15px;
+    padding-top: 60px;
+  }
+
+  .card {
+    padding: 20px;
+    border-radius: 15px;
+  }
+
+  .card h2 {
+    font-size: 20px;
+    margin-bottom: 20px;
+  }
+
+  table th, table td {
+    font-size: 13px;
+    padding: 8px;
+  }
+
+  table td button {
+    font-size: 13px;
+    padding: 4px 8px;
+  }
+
+  .entries-form {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .entries-control,
+  .search-control {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .search-control {
+    justify-content: space-between;
+  }
+
+  .dataTables_filter {
+    text-align: left;
+    margin-top: 10px;
+  }
+
+  .pagination {
+    text-align: center;
+  }
+
+  .pagination a {
+    font-size: 13px;
+    padding: 5px 8px;
+  }
+}
+
+/* Responsive untuk layar sangat kecil (max-width: 480px) */
+@media (max-width: 480px) {
+  .card {
+    padding: 15px;
+  }
+
+  table th, table td {
+    font-size: 12px;
+    padding: 6px;
+  }
+
+  .pagination a {
+    font-size: 12px;
+    padding: 4px 6px;
+    margin: 0 2px;
+  }
+}
