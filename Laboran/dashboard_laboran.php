@@ -8,25 +8,40 @@ date_default_timezone_set('Asia/Jakarta');
 $hari = strtolower(date('l'));
 $jam = date('H:i');
 
+// ID khusus untuk ruangan online
+$onlineRoomId = 999;
+
+// Ambil semua data ruangan
 $stmt = $pdo->query("SELECT * FROM rooms ORDER BY code ASC");
 $rooms = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-$stmt = $pdo->prepare("SELECT * FROM courses WHERE LOWER(day) = :day AND :time BETWEEN start_time AND end_time");
+// Ambil jadwal aktif saat ini
+$stmt = $pdo->prepare("
+    SELECT c.*, r.code AS room_code 
+    FROM courses c 
+    JOIN rooms r ON c.room_id = r.id 
+    WHERE LOWER(c.day) = :day AND :time BETWEEN c.start_time AND c.end_time
+");
 $stmt->execute([
     ':day' => $hari,
     ':time' => $jam
 ]);
 $jadwalAktif = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-$ruanganDipakai = array_column($jadwalAktif, 'room_id');
+// Ambil semua room_id yang sedang digunakan saat ini, kecuali ruang online
+$ruanganDipakai = array_filter(array_column($jadwalAktif, 'room_id'), function($id) use ($onlineRoomId) {
+    return $id != $onlineRoomId;
+});
 
+// Reset semua status ke 'Available', kecuali ruangan online
+$stmt = $pdo->prepare("UPDATE rooms SET status = 'Available' WHERE id != ?");
+$stmt->execute([$onlineRoomId]);
+
+// Set status ke 'In Use' untuk ruangan yang sedang dipakai
 if (!empty($ruanganDipakai)) {
     $inQuery = implode(',', array_fill(0, count($ruanganDipakai), '?'));
-    $stmt = $pdo->prepare("UPDATE rooms SET status = 'In Use' WHERE code IN ($inQuery)");
+    $stmt = $pdo->prepare("UPDATE rooms SET status = 'In Use' WHERE id IN ($inQuery)");
     $stmt->execute($ruanganDipakai);
-} else {
-    $stmt = $pdo->prepare("UPDATE rooms SET status = 'Available'");
-    $stmt->execute();
 }
 ?>
 
@@ -228,16 +243,17 @@ footer {
     
     <!-- STATUS RUANGAN -->
     <div class="card status-card">
-      <h3>Status Ruangan</h3>
+      <h3>Room Status</h3>
       <div class="daftarRuangan">
         <?php foreach ($rooms as $room): ?>
           <?php
+            if ($room['id'] == 999) continue; // Sembunyikan ruangan Online
             $kode = htmlspecialchars($room['code']);
             $status = htmlspecialchars($room['status']);
             $warnaClass = ($status === 'In Use') ? 'status-merah' : 'status-hijau';
           ?>
           <div class='baris-ruangan'>
-            <span class='label'>Ruang</span>
+            <span class='label'>Room</span>
             <span class='kode'><?= $kode ?></span>
             <span class='status <?= $warnaClass ?>'><?= $status ?></span>
           </div>
@@ -247,29 +263,29 @@ footer {
 
     <!-- JADWAL SAAT INI -->
     <div class="card table-card">
-      <h3>Jadwal Saat Ini</h3>
+      <h3>Current Schedule</h3>
       <div class="table-wrapper">
         <table>
           <thead>
             <tr>
-              <th>Ruangan</th>
-              <th>Mata Kuliah</th>
-              <th>Dosen</th>
-              <th>Jam</th>
+              <th>Room</th>
+              <th>Course</th>
+              <th>Lecturer</th>
+              <th>Time</th>
             </tr>
           </thead>
           <tbody>
             <?php if (!empty($jadwalAktif)): ?>
               <?php foreach ($jadwalAktif as $row): ?>
                 <tr>
-                  <td><?= htmlspecialchars($row['room_id']) ?></td>
+                  <td><?= htmlspecialchars($row['room_code']) ?></td>
                   <td><?= htmlspecialchars($row['course']) ?></td>
                   <td><?= htmlspecialchars($row['lecturer']) ?></td>
                   <td><?= date('H:i', strtotime($row['start_time'])) ?> - <?= date('H:i', strtotime($row['end_time'])) ?></td>
                 </tr>
               <?php endforeach; ?>
             <?php else: ?>
-              <tr><td colspan="4">Tidak ada jadwal aktif saat ini.</td></tr>
+              <tr><td colspan="4">There is no active schedule at the moment.</td></tr>
             <?php endif; ?>
           </tbody>
         </table>

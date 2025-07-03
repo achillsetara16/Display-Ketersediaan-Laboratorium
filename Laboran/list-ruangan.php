@@ -1,6 +1,7 @@
 <?php include('../partials/header.php'); ?>
 <?php include('../partials/sidebar.php'); ?>
 <?php include('../config/db.php'); ?>
+<?php date_default_timezone_set('Asia/Jakarta'); ?>
 <link rel="stylesheet" href="../assets/css/list-ruangan.css">
 <!-- jQuery (wajib) -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -73,37 +74,47 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     $rooms = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
                     foreach ($rooms as $row) {
-                        echo "<tr>";
-                        echo "<td>" . htmlspecialchars($row['id']) . "</td>";
-                        echo "<td>" . htmlspecialchars($row['code']) . "</td>";
-                        echo "<td>" . htmlspecialchars($row['name']) . "</td>";
-                        echo "<td>" . htmlspecialchars($row['building']) . "</td>";
-                        $status = $row['is_in_use'] ? 'in use' : 'available';
-                        echo "<td>" . $status . "</td>";
+                    $onlineRoomId = 999; // ID untuk ruangan online
+
+                if ($row['id'] == $onlineRoomId || strtolower($row['code']) === 'online') {
+                continue; // Lewati baris ini jika ruangan adalah "Online"
+                }
+
+                    // Cek apakah ruangan online
+                if ($row['id'] == $onlineRoomId) {
+                    $status = 'available';
+                } else {
+                    $status = $row['is_in_use'] ? 'in use' : 'available';
+                }
+
+                    // Hanya update jika status berubah (opsional tapi direkomendasikan)
+                if ($row['status'] !== $status) {
+                    $updateStmt = $pdo->prepare("UPDATE rooms SET status = :status WHERE id = :id");
+                    $updateStmt->execute([
+                        ':status' => $status,
+                        ':id' => $row['id']
+                ]);
+                }
 
 
-                        // Kolom Aksi
-                        echo "<td class='aksi-cell'>";
+    echo "<tr>";
+    echo "<td>" . htmlspecialchars($row['id']) . "</td>";
+    echo "<td>" . htmlspecialchars($row['code']) . "</td>";
+    echo "<td>" . htmlspecialchars($row['name']) . "</td>";
+    echo "<td>" . htmlspecialchars($row['building']) . "</td>";
+    echo "<td>" . $status . "</td>";
 
-                        // Form Update Status
-                        echo "<form method='POST' style='display:inline-block; margin-right:5px;'>";
-                        echo "<input type='hidden' name='room_id' value='" . $row['id'] . "'>";
-                        echo "<select name='new_status' onchange='this.form.submit()'>";
-                        echo "<option disabled selected>Edit Status</option>";
-                        echo "<option value='available'" . ($status === 'available' ? " disabled" : "") . ">Available</option>";
-                        echo "<option value='in use'" . ($status === 'in use' ? " disabled" : "") . ">In Use</option>";
-                        echo "</select>";
-                        echo "</form>";
+    echo "<td class='aksi-cell'>";
+    // Form Delete Room
+    echo "<form method='POST' onsubmit=\"return confirm('Yakin ingin menghapus ruangan ini?');\" style='display:inline-block;'>";
+    echo "<input type='hidden' name='delete_room_id' value='" . $row['id'] . "'>";
+    echo "<button type='submit' class='delete-button' style='background-color:red; color:white; border:none; padding:4px 8px;'>Delete</button>";
+    echo "</form>";
+    echo "</td>";
 
-                        // Form Delete Room
-                        echo "<form method='POST' onsubmit=\"return confirm('Yakin ingin menghapus ruangan ini?');\" style='display:inline-block;'>";
-                        echo "<input type='hidden' name='delete_room_id' value='" . $row['id'] . "'>";
-                        echo "<button type='submit' class='delete-button' style='background-color:red; color:white; border:none; padding:4px 8px;'>Delete</button>";
-                        echo "</form>";
+    echo "</tr>";
+}
 
-                        echo "</td>";
-                        echo "</tr>";
-                    }
                 } catch (PDOException $e) {
                     echo "<tr><td colspan='9'>Error: " . $e->getMessage() . "</td></tr>";
                 }
