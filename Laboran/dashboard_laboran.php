@@ -31,19 +31,12 @@ if (!empty($ruanganDipakai)) {
 ?>
 
 <style>
-/* RESET & DASAR */
-*, *::before, *::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
 body {
   font-family: 'Poppins', sans-serif;
-  background-color: #ecf0f1;
+  background-color: #ffffff;
+  margin: 0;
+  padding: 0;
   color: #2c3e50;
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
 }
 
 /* TOPBAR */
@@ -61,7 +54,6 @@ body {
   align-items: center;
   justify-content: space-between;
   padding: 0 30px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   z-index: 1000;
 }
 
@@ -75,28 +67,25 @@ body {
   background-color: #2B7A78;
   color: #fff;
   padding-top: 20px;
-  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
 }
 .sidebar ul {
   list-style: none;
+  padding: 0;
 }
 .sidebar ul li a {
   display: flex;
   align-items: center;
-  gap: 10px;
   padding: 10px 20px;
   color: inherit;
   text-decoration: none;
-  transition: background-color 0.25s, color 0.25s;
 }
 .sidebar ul li a:hover {
   background-color: #3AAFA9;
-  color: #ffffff;
 }
 .active {
   background-color: #def2f1;
   color: #17252A !important;
-  font-weight: 700;
+  font-weight: bold;
   border-left: 4px solid #3AAFA9;
 }
 .sidebar .logo-container {
@@ -108,121 +97,113 @@ body {
 }
 .sidebar .logo-container img {
   width: 100%;
-  height: auto;
   max-width: 120px;
-  max-height: 120px;
-  object-fit: contain;
-}
-.logo-divider {
-  height: 2px;
-  background-color: #ddd;
-  margin: 20px;
 }
 
-/* KONTEN UTAMA */
+/* CONTENT */
 .content {
-  margin: 60px 0 0 250px;
-  padding: 1rem;
-  flex-grow: 1;
-  overflow-x: auto;
+  margin-left: 250px;
+  padding-top: 0px;
+  padding-right: 10px;
+  padding-bottom: 10px;
+  padding-left: 10px;
 }
+
 .container {
   display: flex;
   gap: 20px;
-  flex-wrap: wrap;
-}
-.card {
-  background: #fff;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-  padding: 20px;
-  flex: 1;
-  min-width: 300px;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-.card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
-}
-.card h3 {
-  margin-bottom: 1rem;
-  padding-bottom: 0.5rem;
-  font-size: 1.4rem;
-  color: #5dade2;
-  border-bottom: 2px solid #ddd;
-}
-.status-card {
-  flex: 0 0 320px;
-}
-.table-card {
-  flex: 1;
-}
-.table-wrapper {
-  overflow-x: auto;
+  flex-wrap: nowrap;
+  align-items: flex-start;
 }
 
-/* STATUS BADGE */
-.status {
-  display: inline-block;
-  padding: 4px 8px;
-  border-radius: 12px;
-  font-size: 0.95rem;
-  font-weight: 700;
-  text-transform: capitalize;
+/* STATUS CARD */
+.status-card {
+  background: #fff;
+  border-radius: 10px;
+  padding: 10px;
+  width: 280px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.07);
 }
-.status-merah {
-  background: #e74c3c;
-  color: #fff;
-}
-.status-hijau {
-  background: #27ae60;
-  color: #fff;
+.status-card h3 {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+  color: #2980b9;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 0.5rem;
 }
 .daftarRuangan {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  font-family: 'Segoe UI', sans-serif;
-  padding-left: 0.25rem;
 }
 .baris-ruangan {
   display: flex;
-  gap: 0.25rem;
-  margin-bottom: 6px;
-  font-size: 16px;
   align-items: center;
+  gap: 6px;
+  background: #f4f6f8;
+  padding: 10px 12px;
+  border-radius: 8px;
+  font-size: 0.9rem;
 }
 .label {
   font-weight: bold;
-  min-width: 20px;
+  color: #34495e;
 }
 .kode {
   font-weight: bold;
-  min-width: 80px;
+  color: #2c3e50;
+}
+.status {
+  padding: 5px 10px;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 0.8rem;
+}
+.status-merah {
+  background-color: #e74c3c;
+  color: #fff;
+}
+.status-hijau {
+  background-color: #2ecc71;
+  color: #fff;
 }
 
-/* TABEL */
+/* TABLE CARD */
+.table-card {
+  flex: 1;
+  background: #fff;
+  border-radius: 10px;
+  padding: 10px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.07);
+}
+.table-card h3 {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+  color: #2980b9;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 0.5rem;
+}
+.table-wrapper {
+  overflow-x: auto;
+}
 table {
   width: 100%;
   border-collapse: collapse;
-  margin-top: 1.2rem;
-  background: #fff;
-  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.05);
 }
 th, td {
   padding: 14px 16px;
   text-align: center;
+  font-size: 0.95rem;
 }
 th {
-  background: #2980b9;
+  background-color: #3498db;
   color: #fff;
-  font-weight: 700;
 }
 tr:nth-child(even) {
   background-color: #f9f9f9;
 }
 tr:hover {
-  background-color: #eef6ff;
+  background-color: #ecf0f1;
 }
 
 /* FOOTER */
