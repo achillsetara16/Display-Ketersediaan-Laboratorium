@@ -145,37 +145,25 @@
   <div class="container">
     <h1 class="title">Select Room Display</h1>
     <p class="subtitle">Choose a room below to access real-time monitoring details.</p>
-
-    <div class="grid-room">
       <?php
-        $rooms = [
-          "GU 601" => "display_GU601.php",
-          "TA 10.3" => "display_TA103.php",
-          "GU 702" => "display_GU702.php",
-          "GU 805" => "display_GU805.php",
-          "GU 701" => "display_GU701.php",
-          "GU 706" => "display_GU706.php",
-          "GU 704" => "display_GU704.php",
-          "TA 11.5B" => "display_TA115B.php",
-          "TA 11.4" => "display_TA114.php",
-          "GU 604" => "display_GU604.php",
-          "TA 11.3" => "display_TA113.php"
-        ];
+        include '../config/db.php';   // $pdo sudah terkoneksi
 
-        foreach ($rooms as $name => $file) {
-          echo "
-            <a href='{$file}' class='card'>
-              <div class='icon'>
-                <svg viewBox='0 0 24 24'>
-                  <path d='M4 4H20V16H4V4ZM2 18H22V20H2V18ZM6 6V14H18V6H6Z'/>
+        // Ambil semua room code yang ingin ditampilkan
+        $stmt = $pdo->query("SELECT code, name FROM rooms ORDER BY code ASC");
+        $rooms = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        ?>
+        <div class="grid-room">
+          <?php foreach ($rooms as $room): ?>
+            <a href="display_class.php?room=<?= urlencode($room['code']) ?>" class="card">
+              <div class="icon">
+                <svg viewBox="0 0 24 24">
+                  <path d="M4 4H20V16H4V4ZM2 18H22V20H2V18ZM6 6V14H18V6H6Z"/>
                 </svg>
               </div>
-              <div class='room-name'>{$name}</div>
-              <div class='room-sub'>Click to view display</div>
+              <div class="room-name"><?= htmlspecialchars($room['code']) ?></div>
+              <div class="room-sub">Click to view display</div>
             </a>
-          ";
-        }
-      ?>
+          <?php endforeach; ?>
     </div>
   </div>
 
