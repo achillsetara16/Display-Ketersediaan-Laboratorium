@@ -80,7 +80,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <style>
         .gradient-bg {
             background: linear-gradient(135deg, #2d1b69 0%, #11998e 100%);
-            min-height: 100vh;
         }
     </style>
 </head>
@@ -135,10 +134,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </div>
 
 
-               <div class="grid md:grid-cols-2 gap-6">
+        <div class="grid md:grid-cols-2 gap-6">
              <div>
                 <label class="block text-sm font-medium text-gray-700">Full Name</label>
-                <input type="text" name="nama_lengkap" value="<?= ucwords(strtolower(htmlspecialchars($user['nama_lengkap']))) ?>"
+                <input type="text" name="nama_lengkap" value="<?= htmlspecialchars($user['nama_lengkap']) ?>"
                        class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2" required>
             </div>
             <div>
@@ -153,12 +152,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
             <div>
                 <label class="block text-sm font-medium text-gray-700">Role</label>
-                <input type="text" value="<?= ucwords(strtolower(htmlspecialchars($user['role']))) ?>"
+                <input type="text" value="<?= htmlspecialchars($user['role']) ?>"
                        class="mt-1 block w-full bg-gray-100 border border-gray-300 rounded-md shadow-sm p-2 text-gray-600" readonly>
             </div>
             <div>
                 <label class="block text-sm font-medium text-gray-700">Status</label>
-                <input type="text" value="<?= ucwords(strtolower(htmlspecialchars($user['status']))) ?>"
+                <input type="text" value="<?= htmlspecialchars($user['status']) ?>"
                        class="mt-1 block w-full bg-gray-100 border border-gray-300 rounded-md shadow-sm p-2 text-gray-600" readonly>
             </div>
         </div>

@@ -1,6 +1,6 @@
 <?php include('../partials/header.php'); ?>
 <?php include('../partials/sidebar.php'); ?>
-<?php require('../config/db.php'); ?>
+<?php include('../config/db.php'); ?>
 <link rel="stylesheet" href="../assets/css/list-ruangan.css">
 <!-- jQuery (wajib) -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

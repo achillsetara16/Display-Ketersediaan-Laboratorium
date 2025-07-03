@@ -1,7 +1,6 @@
 body {
-    background: linear-gradient(135deg, #2d1b69 0%, #11998e 100%);
+    background-color: #f1f5f9;
     font-family: 'Inter', sans-serif;
-    min-height: 100vh;
 }
 
 button:hover {
@@ -13,57 +12,4 @@ button:hover {
     transform: translateY(-4px);
     box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
-}
-
-.sidebar ul {
-  list-style: none;
-}
-
-.sidebar ul li a {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 10px 20px;
-  color: inherit;
-  text-decoration: none;
-  transition: background-color 0.25s, color 0.25s;
-}
-
-.sidebar ul li a .icon {
-  font-size: 1.2rem;
-}
-
-.sidebar ul li a:hover {
-  background-color: #3AAFA9;
-  color: #ffffff;
-}
-
-.active {
-  background-color: #def2f1;
-  color: #17252A !important;
-  font-weight: 700;
-  border-left: 4px solid #3AAFA9;
-}
-
-/* logo */
-.sidebar .logo-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 80px;
-  padding: 60px;
-}
-
-.sidebar .logo-container img {
-  width: 100%;
-  height: auto;             /* ← perbaikan di sini */
-  max-width: 120px;
-  max-height: 120px;
-  object-fit: contain;
-}
-
-.logo-divider {
-  height: 2px;
-  background-color: #ddd;
-  margin: 20px;
 }

@@ -80,7 +80,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <style>
         .gradient-bg {
             background: linear-gradient(135deg, #2d1b69 0%, #11998e 100%);
-            min-height: 100vh;
         }
     </style>
 </head>

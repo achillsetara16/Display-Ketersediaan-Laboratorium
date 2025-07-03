@@ -47,7 +47,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $updateStatus->execute([':id' => $user['id']]);
 
             switch ($user['role']) {
-                case 'super_admin':
+                case 'superadmin':
                     header("Location: ../Super_Admin/dashboard.php");
                     break;
                 case 'laboran':

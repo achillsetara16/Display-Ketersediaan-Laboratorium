@@ -17,15 +17,30 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $semester = $_POST['semester'] ?? null;
     $room_id = isset($_POST['room_id']) ? $_POST['room_id'] : null;
 
-    // Simpan ke tabel courses (dengan room_id)
-    $stmt = $pdo->prepare("INSERT INTO courses (day, start_time, end_time, course, lecturer, class, semester, room_id)
-                           VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
-    $stmt->execute([$day, $start_time, $end_time, $course, $lecturer, $class, $semester, $room_id]);
+   // Validasi jadwal bentrok
+$cekJadwal = $pdo->prepare("
+    SELECT * FROM courses 
+    WHERE day = ? AND room_id = ?
+    AND start_time < ? AND end_time > ?
+");
+$cekJadwal->execute([
+    $day,
+    $room_id,
+    $end_time,
+    $start_time
+]);
+    if ($cekJadwal->rowCount() > 0) {
+        echo "<script>alert('Jadwal bentrok dengan jadwal lain di ruangan ini! Silakan pilih waktu lain.');</script>";
+    } else {
+        // Simpan ke tabel courses (jika tidak bentrok)
+        $stmt = $pdo->prepare("INSERT INTO courses (day, start_time, end_time, course, lecturer, class, semester, room_id)
+                            VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+        $stmt->execute([$day, $start_time, $end_time, $course, $lecturer, $class, $semester, $room_id]);
 
-    echo "<p style='color: green;'>Data mata kuliah berhasil disimpan ke tabel courses.</p>";
+        echo "<script>alert('Data berhasil disimpan.');</script>";
+    }
 }
 ?>
-
 
 <link rel="stylesheet" href="../assets/css/add-matkul.css">
 
