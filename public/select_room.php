@@ -149,7 +149,7 @@
         include '../config/db.php';   // $pdo sudah terkoneksi
 
         // Ambil semua room code yang ingin ditampilkan
-        $stmt = $pdo->query("SELECT code, name FROM rooms ORDER BY code ASC");
+        $stmt = $pdo->query("SELECT code, name FROM rooms WHERE LOWER(code) != 'online' ORDER BY code ASC");
         $rooms = $stmt->fetchAll(PDO::FETCH_ASSOC);
         ?>
         <div class="grid-room">

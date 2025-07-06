@@ -7,8 +7,6 @@ date_default_timezone_set('Asia/Jakarta');
 
 $hari = strtolower(date('l'));
 $jam = date('H:i');
-
-// ID khusus untuk ruangan online
 $onlineRoomId = 999;
 
 // Ambil semua data ruangan
@@ -28,92 +26,37 @@ $stmt->execute([
 ]);
 $jadwalAktif = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-// Ambil semua room_id yang sedang digunakan saat ini, kecuali ruang online
+// Ambil ID ruangan yang sedang digunakan
 $ruanganDipakai = array_filter(array_column($jadwalAktif, 'room_id'), function($id) use ($onlineRoomId) {
     return $id != $onlineRoomId;
 });
 
-// Reset semua status ke 'Available', kecuali ruangan online
-$stmt = $pdo->prepare("UPDATE rooms SET status = 'Available' WHERE id != ?");
-$stmt->execute([$onlineRoomId]);
+// Reset semua status ke 'available' jika tidak manual override
+$stmt = $pdo->query("SELECT id, manual_override FROM rooms WHERE id != $onlineRoomId");
+$allRooms = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-// Set status ke 'In Use' untuk ruangan yang sedang dipakai
+foreach ($allRooms as $room) {
+    if (is_null($room['manual_override'])) {
+        $pdo->prepare("UPDATE rooms SET status = 'available' WHERE id = ?")->execute([$room['id']]);
+    }
+}
+
+// Set status 'in use' untuk ruangan yang sedang dipakai jika tidak manual override
 if (!empty($ruanganDipakai)) {
-    $inQuery = implode(',', array_fill(0, count($ruanganDipakai), '?'));
-    $stmt = $pdo->prepare("UPDATE rooms SET status = 'In Use' WHERE id IN ($inQuery)");
-    $stmt->execute($ruanganDipakai);
+    foreach ($ruanganDipakai as $room_id) {
+        $stmt = $pdo->prepare("SELECT manual_override FROM rooms WHERE id = ?");
+        $stmt->execute([$room_id]);
+        $manual = $stmt->fetchColumn();
+
+        if (is_null($manual)) {
+            $pdo->prepare("UPDATE rooms SET status = 'in_use' WHERE id = ?")->execute([$room_id]);
+        }
+    }
 }
 ?>
 
 <style>
-body {
-  font-family: 'Poppins', sans-serif;
-  background-color: #ffffff;
-  margin: 0;
-  padding: 0;
-  color: #2c3e50;
-}
 
-/* TOPBAR */
-.topbar {
-  position: fixed;
-  top: 0;
-  left: 250px;
-  right: 0;
-  height: 60px;
-  background-color: #17252A;
-  color: #fff;
-  font-size: 1.375rem;
-  font-weight: 700;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 30px;
-  z-index: 1000;
-}
-
-/* SIDEBAR */
-.sidebar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 250px;
-  height: 100%;
-  background-color: #2B7A78;
-  color: #fff;
-  padding-top: 20px;
-}
-.sidebar ul {
-  list-style: none;
-  padding: 0;
-}
-.sidebar ul li a {
-  display: flex;
-  align-items: center;
-  padding: 10px 20px;
-  color: inherit;
-  text-decoration: none;
-}
-.sidebar ul li a:hover {
-  background-color: #3AAFA9;
-}
-.active {
-  background-color: #def2f1;
-  color: #17252A !important;
-  font-weight: bold;
-  border-left: 4px solid #3AAFA9;
-}
-.sidebar .logo-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 80px;
-  padding: 60px;
-}
-.sidebar .logo-container img {
-  width: 100%;
-  max-width: 120px;
-}
 
 /* CONTENT */
 .content {
@@ -250,12 +193,12 @@ footer {
             if ($room['id'] == 999) continue; // Sembunyikan ruangan Online
             $kode = htmlspecialchars($room['code']);
             $status = htmlspecialchars($room['status']);
-            $warnaClass = ($status === 'In Use') ? 'status-merah' : 'status-hijau';
+            $warnaClass = ($status === 'in_use') ? 'status-merah' : 'status-hijau';
           ?>
           <div class='baris-ruangan'>
             <span class='label'>Room</span>
             <span class='kode'><?= $kode ?></span>
-            <span class='status <?= $warnaClass ?>'><?= $status ?></span>
+            <span class='status <?= $warnaClass ?>'><?= ucwords(str_replace('_', ' ', $status)) ?></span>
           </div>
         <?php endforeach; ?>
       </div>

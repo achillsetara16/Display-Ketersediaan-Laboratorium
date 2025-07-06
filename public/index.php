@@ -194,12 +194,15 @@
 
   <?php
   include('../config/db.php');
-  $totalStmt = $pdo->query("SELECT COUNT(*) FROM rooms");
-  $totalRooms = $totalStmt->fetchColumn();
-  $availableStmt = $pdo->query("SELECT COUNT(*) FROM rooms WHERE status = 'Available'");
-  $availableRooms = $availableStmt->fetchColumn();
-  $inUseStmt = $pdo->query("SELECT COUNT(*) FROM rooms WHERE status = 'In Use'");
-  $inUseRooms = $inUseStmt->fetchColumn();
+  $totalRoomsStmt = $pdo->query("SELECT COUNT(*) FROM rooms WHERE id != 999");
+$totalRooms = $totalRoomsStmt->fetchColumn();
+
+$availableRoomsStmt = $pdo->query("SELECT COUNT(*) FROM rooms WHERE status = 'available' AND id != 999");
+$availableRooms = $availableRoomsStmt->fetchColumn();
+
+$inUseRoomsStmt = $pdo->query("SELECT COUNT(*) FROM rooms WHERE status = 'in_use' AND id != 999");
+$inUseRooms = $inUseRoomsStmt->fetchColumn();
+
   ?>
 </head>
 
@@ -237,19 +240,20 @@
             <li>Studios & Workshops</li>
           </ul>
           <div class="menu-stats">
-            <div class="menu-stat">
-              <div class="menu-stat-number">12</div>
-              <div class="menu-stat-label">Total Rooms</div>
-            </div>
-            <div class="menu-stat">
-              <div class="menu-stat-number">0</div>
-              <div class="menu-stat-label">Available</div>
-            </div>
-            <div class="menu-stat">
-              <div class="menu-stat-number">1</div>
-              <div class="menu-stat-label">In Use</div>
-            </div>
-          </div>
+  <div class="menu-stat">
+    <div class="menu-stat-number"><?= $totalRooms ?></div>
+    <div class="menu-stat-label">Total Rooms</div>
+  </div>
+  <div class="menu-stat">
+    <div class="menu-stat-number"><?= $availableRooms ?></div>
+    <div class="menu-stat-label">Available</div>
+  </div>
+  <div class="menu-stat">
+    <div class="menu-stat-number"><?= $inUseRooms ?></div>
+    <div class="menu-stat-label">In Use</div>
+  </div>
+</div>
+
           <button class="menu-button" onclick="window.location.href='select_room.php'">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
               <path d="M8,5.14V19.14L19,12.14L8,5.14Z" />

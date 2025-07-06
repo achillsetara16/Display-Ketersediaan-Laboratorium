@@ -160,7 +160,7 @@ body {
   color: #fff;
 }
 
-.status.terpakai {
+/* .status.terpakai {
   background: #e74c3c;
   color: #fff;
   padding: 4px 8px;
@@ -168,7 +168,7 @@ body {
     font-size: 0.95rem;
     font-weight: bold;
     text-transform: capitalize;
-}
+} */
 .daftarRuangan {
   display: flex;
   flex-direction: column;
