@@ -37,14 +37,13 @@
     </button>
 
     <!-- Menu -->
-    <div class="hidden w-full md:flex md:w-auto" id="navbar-default">
-        <ul class="flex flex-col md:flex-row md:items-center gap-4 md:gap-12 text-white text-2xl mt-4 md:mt-0">
-            <li><a href="index.php" class="hover:underline block py-2 md:py-0">Home</a></li>
-            <li><a href="contact_us.php" class="hover:underline block py-2 md:py-0">Contact Us</a></li>
-            <li><a href="about_us.php" class="hover:underline block py-2 md:py-0">About Us</a></li>
-            <li><a href="../auth/login.php" class="hover:underline block py-2 md:py-0">Login</a></li>
-        </ul>
-    </div>
+    <ul class="flex flex-col md:flex-row md:items-center gap-4 md:gap-12 text-white text-2xl mt-4 md:mt-0">
+  <li><a href="index.php" class="block py-2 md:py-0 px-3 rounded-md hover:bg-white hover:text-[#2B7A78] transition-all duration-200">Home</a></li>
+  <li><a href="contact_us.php" class="block py-2 md:py-0 px-3 rounded-md hover:bg-white hover:text-[#2B7A78] transition-all duration-200">Contact Us</a></li>
+  <li><a href="about_us.php" class="block py-2 md:py-0 px-3 rounded-md hover:bg-white hover:text-[#2B7A78] transition-all duration-200">About Us</a></li>
+  <li><a href="../auth/login.php" class="block py-2 md:py-0 px-3 rounded-md hover:bg-white hover:text-[#2B7A78] transition-all duration-200">Login</a></li>
+</ul>
+
 </nav>
 
 

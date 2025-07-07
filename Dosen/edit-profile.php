@@ -29,6 +29,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $bio = trim($_POST['bio']);
     $status = trim($_POST['status']);
     $profile_photo_path = $user['profile_photo_path'];
+    $nik = trim($_POST['nik']);
+    $prodi = trim($_POST['prodi']);
 
     // Upload foto jika ada
     if (!empty($_FILES['profile_photo_path']['name'])) {
@@ -53,7 +55,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt = $pdo->prepare("
             UPDATE users 
             SET nama_lengkap = :nama_lengkap, email = :email, bio = :bio, 
-                 profile_photo_path = :profile_photo_path 
+                 profile_photo_path = :profile_photo_path, nik = :nik, prodi = :prodi
             WHERE id = :user_id
         ");
         $stmt->execute([
@@ -61,6 +63,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             'email' => $email,
             'bio' => $bio,
             'profile_photo_path' => $profile_photo_path,
+            'nik' => $nik,
+            'prodi' => $prodi,
             'user_id' => $user_id
         ]);
 
@@ -135,9 +139,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
         <div class="grid md:grid-cols-2 gap-6">
+            <div>
+                <label class="block text-sm font-medium text-gray-700">NIK</label>
+                <input type="text" value="<?= htmlspecialchars($user['nik']) ?>"
+                       class="mt-1 block w-full bg-gray-100 border border-gray-300 rounded-md shadow-sm p-2 text-gray-600" readonly>
+            </div>
+            <div>
+                <label class="block text-sm font-medium text-gray-700">Prodi</label>
+                <input type="text" value="<?= ucwords ( strtolower ( htmlspecialchars($user['prodi']))) ?>"
+                       class="mt-1 block w-full bg-gray-100 border border-gray-300 rounded-md shadow-sm p-2 text-gray-600" readonly>
+            </div>
              <div>
                 <label class="block text-sm font-medium text-gray-700">Full Name</label>
-                <input type="text" name="nama_lengkap" value="<?= htmlspecialchars($user['nama_lengkap']) ?>"
+                <input type="text" name="nama_lengkap" value="<?= ucwords(strtolower(htmlspecialchars($user['nama_lengkap']))) ?>"
                        class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2" required>
             </div>
             <div>
@@ -148,16 +162,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <div class="md:col-span-2">
                 <label class="block text-sm font-medium text-gray-700">Bio</label>
                 <textarea name="bio" rows="4"
-                          class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"><?= htmlspecialchars($user['bio']) ?></textarea>
+                          class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"><?= ucwords(strtolower( htmlspecialchars($user['bio']))) ?></textarea>
             </div>
             <div>
                 <label class="block text-sm font-medium text-gray-700">Role</label>
-                <input type="text" value="<?= htmlspecialchars($user['role']) ?>"
+                <input type="text" value="<?= ucwords( strtolower ( htmlspecialchars($user['role']))) ?>"
                        class="mt-1 block w-full bg-gray-100 border border-gray-300 rounded-md shadow-sm p-2 text-gray-600" readonly>
             </div>
             <div>
                 <label class="block text-sm font-medium text-gray-700">Status</label>
-                <input type="text" value="<?= htmlspecialchars($user['status']) ?>"
+                <input type="text" value="<?= ucwords ( strtolower ( htmlspecialchars($user['status']))) ?>"
                        class="mt-1 block w-full bg-gray-100 border border-gray-300 rounded-md shadow-sm p-2 text-gray-600" readonly>
             </div>
         </div>
