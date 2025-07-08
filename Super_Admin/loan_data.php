@@ -3,14 +3,22 @@ include('../partials/header.php');
 include('../partials/sidebar.php');
 ?>
 <link rel="stylesheet" href="../assets/css/list_matkul.css">
+<!-- jQuery (wajib) -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<!-- DataTables CSS -->
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
+
+<!-- DataTables JS -->
+<script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
 
 <?php
 $API_KEY     = '9a89a3be-1d44-4e81-96a8-585cb0453718';
-$koderuangan = 'A101';
+// $koderuangan = 'A101';
 $tanggal     = date('Y-m-d'); // bisa diganti dengan GET/POST
 
 $url = 'https://peminjaman.polibatam.ac.id/api-penru/data-peminjaman?' .
-       http_build_query(compact('koderuangan', 'tanggal'));
+       http_build_query(compact( 'tanggal'));
 
 $headers = ["API-Key: $API_KEY"];
 
@@ -42,36 +50,37 @@ if ($httpCode === 200 && $response) {
 
 <div class="main-content">
   <div class="card">
-    <h2>Data Peminjaman Ruangan (<?= htmlspecialchars($koderuangan) ?> – <?= htmlspecialchars($tanggal) ?>)</h2>
+    <h2>Data Peminjaman Ruangan <?= htmlspecialchars($tanggal) ?></h2>
     <table id="roomTable">
       <thead>
         <tr>
-          <th>ID</th>
-          <th>Ruangan</th>
+          <th>Borrower</th>
+          <th>Activity</th>
+          <th>Borrow Date</th>
+          <th>Time</th>
+          <th>Code</th>
+          <th>Name Room</th>
+          <th>Building</th>
           <th>Penanggung Jawab</th>
-          <th>Jenis Kegiatan</th>
-          <th>Total Peminjam</th>
-          <th>Tanggal Pinjam</th>
-          <th>Status</th>
-          <th>Action</th>
         </tr>
       </thead>
       <tbody>
         <?php if (!empty($data) && is_array($data)): ?>
           <?php foreach ($data as $row): ?>
+            <?php
+        $start = isset($row['start_time']) ? str_replace('.', ':', $row['start_time']) : '-';
+        $end   = isset($row['end_time'])   ? str_replace('.', ':', $row['end_time'])   : '-';
+        $timeDisplay = ($start !== '-' && $end !== '-') ? "$start – $end" : '-';
+      ?>
             <tr>
-              <td><?= htmlspecialchars($row['id']               ?? '-') ?></td>
-              <td><?= htmlspecialchars($row['ruangan']          ?? '-') ?></td>
-              <td><?= htmlspecialchars($row['penanggung_jawab'] ?? '-') ?></td>
-              <td><?= htmlspecialchars($row['jenis_kegiatan']   ?? '-') ?></td>
-              <td><?= htmlspecialchars($row['total_peminjam']   ?? '-') ?></td>
-              <td><?= htmlspecialchars($row['tanggal_pinjam']   ?? '-') ?></td>
-              <td><?= htmlspecialchars($row['status']           ?? '-') ?></td>
-              <td>
-                <!-- Contoh tombol aksi, bisa sesuaikan URL/navigasi -->
-                <a href="edit.php?id=<?= urlencode($row['id'] ?? '') ?>">Edit</a> |
-                <a href="detail.php?id=<?= urlencode($row['id'] ?? '') ?>">Detail</a>
-              </td>
+              <td><?= htmlspecialchars($row['nama_mahasiswa'] ?? '-') ?></td>
+              <td><?= htmlspecialchars($row['jenis_kegiatan'] ?? '-') ?></td>
+              <td><?= htmlspecialchars($row['tanggal_pinjam'] ?? '-') ?></td>
+              <td><?= htmlspecialchars($timeDisplay) ?></td>
+              <td><?= htmlspecialchars($row['kode_ruangan'] ?? '-') ?></td>
+              <td><?= htmlspecialchars($row['nama_ruangan'] ?? '-') ?></td>
+              <td><?= htmlspecialchars($row['gedung_ruangan'] ?? '-') ?></td>
+              <td><?= htmlspecialchars($row['nama_penanggungjawab'] ?? '-') ?></td>
             </tr>
           <?php endforeach; ?>
         <?php else: ?>
@@ -85,5 +94,52 @@ if ($httpCode === 200 && $response) {
     </table>
   </div>
 </div>
+<script>
+  $.fn.dataTable.ext.pager.three_button = function (page, pages) {
+    var numbers = [];
+    var buttons = [];
+    var current = page;
+    var total = pages;
 
+    var start = current - 1;
+    var end = current + 1;
+
+    if (start < 0) {
+      start = 0;
+      end = 2;
+    }
+
+    if (end >= total) {
+      end = total - 1;
+      start = total - 3;
+    }
+
+    start = Math.max(start, 0);
+    end = Math.min(end, total - 1);
+
+    for (var i = start; i <= end; i++) {
+      numbers.push(i);
+    }
+
+    buttons.push('previous');
+    $.merge(buttons, numbers);
+    buttons.push('next');
+
+    return buttons;
+  };
+
+  $(document).ready(function () {
+    if ($.fn.DataTable.isDataTable('#roomTable')) {
+      $('#roomTable').DataTable().clear().destroy();
+    }
+
+    $('#roomTable').DataTable({
+      pagingType: "three_button", // gunakan custom pager di atas
+      pageLength: 10,
+      info: true,
+      searching: true,
+      ordering: true
+    });
+  });
+</script>
 <?php include('../partials/footer.php'); ?>
