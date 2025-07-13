@@ -61,7 +61,7 @@ if (!empty($ruanganDipakai)) {
 /* CONTENT */
 .content {
   margin-left: 250px;
-  padding-top: 0px;
+  padding-top: 20px;
   padding-right: 10px;
   padding-bottom: 10px;
   padding-left: 10px;
