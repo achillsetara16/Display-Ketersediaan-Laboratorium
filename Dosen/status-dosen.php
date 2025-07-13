@@ -1,9 +1,56 @@
-<?php include('../partials/header.php'); ?>
-<?php include('../partials/sidebar.php'); ?>
-<?php include('../config/db.php'); ?>
-<link rel="stylesheet" href="../assets/css/status-dosen.css">
-<script type="module" src="../assets/js/status-dosen.js"></script>
+<?php
+include('../partials/header.php');
+include('../partials/sidebar.php');
+include('../config/db.php');
 
+// BAGIAN UNTUK AMBIL DATA SAJA (DIPANGGIL VIA AJAX)
+if (isset($_GET['get_data'])) {
+    try {
+        $stmt = $pdo->query("
+            SELECT 
+                u.nik,
+                u.nama_lengkap,
+                u.prodi,
+                r.code AS room_code,
+                COALESCE(dp.status, 'not_in_room') AS status
+            FROM users u
+            LEFT JOIN (
+                SELECT user_id, room_id, status
+                FROM dosen_presence dp1
+                WHERE id IN (
+                    SELECT MAX(id)
+                    FROM dosen_presence dp2
+                    WHERE dp1.user_id = dp2.user_id
+                )
+            ) dp ON dp.user_id = u.id
+            LEFT JOIN rooms r ON dp.room_id = r.id
+            WHERE u.role = 'dosen' AND u.id IN (1, 2)
+        ");
+
+        $lecturers = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        foreach ($lecturers as $row) {
+            $status = htmlspecialchars($row['status']);
+            $label = $status === 'in_room' ? 'In Room' : 'Not In Room';
+            $statusClass = $status === 'in_room' ? 'status-hadir' : 'status-tidak';
+
+            echo "<tr>";
+            echo "<td>" . htmlspecialchars($row['nik']) . "</td>";
+            echo "<td>" . htmlspecialchars($row['nama_lengkap']) . "</td>";
+            echo "<td>" . htmlspecialchars($row['prodi'] ?? '-') . "</td>";
+            echo "<td>" . htmlspecialchars($row['room_code'] ?? '-') . "</td>";
+            echo "<td class=\"$statusClass\">" . $label . "</td>";
+            echo "</tr>";
+        }
+    } catch (PDOException $e) {
+        echo "<tr><td colspan='5'>Error: " . $e->getMessage() . "</td></tr>";
+    }
+    exit;
+}
+?>
+
+<!-- HTML TAMPILAN UTAMA -->
+<link rel="stylesheet" href="../assets/css/status-dosen.css">
 <div class="main-content">
     <div class="card">
         <h2>Status Lecturer</h2>
@@ -18,33 +65,23 @@
                 </tr>
             </thead>
             <tbody>
-    <?php
-    try {
-        $stmt = $pdo->query("SELECT 
-                users.nik,
-                users.nama_lengkap,
-                users.prodi,
-                rooms.code AS room_code,
-                dosen_presence.status
-            FROM dosen_presence
-            JOIN users ON dosen_presence.user_id = users.id
-            JOIN rooms ON dosen_presence.room_id = rooms.id
-            ORDER BY dosen_presence.time_in DESC
-        ");
+                <!-- Data akan diisi lewat JavaScript -->
+            </tbody>
+        </table>
+    </div>
+</div>
 
-        $lecturers = $stmt->fetchAll(PDO::FETCH_ASSOC);
+<!-- JAVASCRIPT UNTUK REFRESH REAL-TIME -->
+<script>
+function fetchStatusDosen() {
+    fetch(window.location.href + '?get_data=1')
+        .then(response => response.text())
+        .then(data => {
+            document.querySelector('#roomTable tbody').innerHTML = data;
+        })
+        .catch(error => console.error('Error fetch data:', error));
+}
 
-        foreach ($lecturers as $row) {
-            echo "<tr>";
-            echo "<td>" . htmlspecialchars($row['nik']) . "</td>";
-            echo "<td>" . htmlspecialchars($row['name_lengkap']) . "</td>";
-            echo "<td>" . htmlspecialchars($row['prodi']) . "</td>";
-            echo "<td>" . htmlspecialchars($row['room_code']) . "</td>";
-            echo "<td>" . htmlspecialchars($row['status']) . "</td>";
-            echo "</tr>";
-        }
-    } catch (PDOException $e) {
-        echo "<tr><td colspan='5'>Error: " . $e->getMessage() . "</td></tr>";
-    }
-    ?>
-</tbody>
+fetchStatusDosen(); // pertama kali
+setInterval(fetchStatusDosen, 5000); // refresh setiap 5 detik
+</script>
