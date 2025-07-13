@@ -9,12 +9,12 @@ if (!isset($_SESSION['user_id'])) {
 }
 
 $userId = $_SESSION['user_id'];
-$stmt = $pdo->prepare("SELECT * FROM users WHERE id = :id AND role = 'masteradmin'");
+$stmt = $pdo->prepare("SELECT * FROM users WHERE id = :id AND role = 'superadmin'");
 $stmt->execute(['id' => $userId]);
 $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
 if (!$user) {
-    echo "Admin tidak ditemukan.";
+    echo "Admin not found.";
     exit();
 }
 

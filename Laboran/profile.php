@@ -13,7 +13,7 @@ $stmt->execute(['id' => $userId]);
 $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
 if (!$user) {
-    echo "Dosen tidak ditemukan.";
+    echo "Laboran not found.";
     exit();
 }
 

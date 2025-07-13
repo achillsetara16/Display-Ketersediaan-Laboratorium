@@ -32,7 +32,7 @@ $current = basename($_SERVER['PHP_SELF']);
             class="bi bi-person-check-fill icon"></i>Status Dosen</a></li>
 
     <?php elseif ($role === 'superadmin'): ?>
-      <li><a href="../Super_Admin/dashboard.php" class="<?= $current == 'dashboard.php' ? 'active' : '' ?>"><i class="bi bi-house-door-fill icon"></i>Dashboard</a></li>
+      <li><a href="../Super_Admin/dashboardadmin.php" class="<?= $current == 'dashboardadmin.php' ? 'active' : '' ?>"><i class="bi bi-house-door-fill icon"></i>Dashboard</a></li>
       <li><a href="../Super_Admin/tambah-ruangan.php" class="<?= $current == 'tambah-ruangan.php' ? 'active' : '' ?>"><i class="bi bi-plus-circle"></i>Add Rooms</a></li>
       <li><a href="../Super_Admin/list-ruangan.php" class="<?= $current == 'list-ruangan.php' ? 'active' : '' ?>"><i class="bi bi-building"></i>Rooms List</a></li>
       <li><a href="../Super_Admin/addmatkul.php" class="<?= $current == 'addmatkul.php' ? 'active' : '' ?>"><i class="bi bi-plus-circle"></i>Add Courses</a></li>
