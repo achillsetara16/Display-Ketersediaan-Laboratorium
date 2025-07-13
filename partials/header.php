@@ -9,7 +9,7 @@ if ($role === 'dosen') {
 } elseif ($role === 'laboran') {
   $profileLink = '../laboran/profile.php';
 }
-elseif ($role === 'masteradmin') {
+elseif ($role === 'superadmin') {
   $profileLink = '../Super_Admin/profile.php';
 }
 
@@ -39,7 +39,7 @@ $user = $_SESSION['user'] ?? ['profile_photo_path' => null];
       switch ($current) {
         case 'dashboard.php':
         case 'dashboard_laboran.php':
-        case 'masteradmin.php':
+        case 'dashboardadmin.php':
           echo 'Dashboard';
           break;
         case 'status-dosen.php':

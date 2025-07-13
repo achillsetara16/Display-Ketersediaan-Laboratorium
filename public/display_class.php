@@ -1,7 +1,7 @@
 <?php
 $page_title = "Room Status";
 include 'header_display.php';
-include '../config/db.php';
+include '../config/db.php'; 
 
 $roomCode = $_GET['room'] ?? null;
 

@@ -48,7 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             switch ($user['role']) {
                 case 'superadmin':
-                    header("Location: ../Super_Admin/dashboard.php");
+                    header("Location: ../Super_Admin/dashboardadmin.php");
                     break;
                 case 'laboran':
                     header("Location: ../Laboran/dashboard_laboran.php");
