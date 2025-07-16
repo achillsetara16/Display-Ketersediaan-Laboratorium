@@ -194,6 +194,7 @@
 
   <?php
   include('../config/db.php');
+  // display rooms
   $totalRoomsStmt = $pdo->query("SELECT COUNT(*) FROM rooms WHERE id != 999");
 $totalRooms = $totalRoomsStmt->fetchColumn();
 
@@ -202,6 +203,32 @@ $availableRooms = $availableRoomsStmt->fetchColumn();
 
 $inUseRoomsStmt = $pdo->query("SELECT COUNT(*) FROM rooms WHERE status = 'in_use' AND id != 999");
 $inUseRooms = $inUseRoomsStmt->fetchColumn();
+
+// display lecturer
+$totalLecturerStmt = $pdo->query("SELECT COUNT(*) FROM users WHERE role = 'dosen'");
+$totalLecturer = $totalLecturerStmt->fetchColumn();
+
+$inRoomsStmt = $pdo->query("
+  SELECT COUNT(*) FROM (
+    SELECT user_id, MAX(id) as latest
+    FROM dosen_presence
+    GROUP BY user_id
+  ) latest_presence
+  JOIN dosen_presence dp ON dp.id = latest_presence.latest
+  WHERE dp.status = 'in_room'
+");
+$inRooms = $inRoomsStmt->fetchColumn();
+
+$notInRoomsStmt = $pdo->query("
+  SELECT COUNT(*) FROM (
+    SELECT user_id, MAX(id) as latest
+    FROM dosen_presence
+    GROUP BY user_id
+  ) latest_presence
+  JOIN dosen_presence dp ON dp.id = latest_presence.latest
+  WHERE dp.status = 'not_in_room'
+");
+$notInRooms = $notInRoomsStmt->fetchColumn();
 
   ?>
 </head>
@@ -281,16 +308,16 @@ $inUseRooms = $inUseRoomsStmt->fetchColumn();
           </ul>
           <div class="menu-stats">
             <div class="menu-stat">
-              <div class="menu-stat-number">12</div>
-              <div class="menu-stat-label">Total Rooms</div>
+              <div class="menu-stat-number"><?= $totalLecturer ?></div>
+              <div class="menu-stat-label">Total Lecturer</div>
             </div>
             <div class="menu-stat">
-              <div class="menu-stat-number">9</div>
-              <div class="menu-stat-label">Available</div>
+              <div class="menu-stat-number"><?= $inRooms?></div>
+              <div class="menu-stat-label">In Room</div>
             </div>
             <div class="menu-stat">
-              <div class="menu-stat-number">2</div>
-              <div class="menu-stat-label">In Use</div>
+              <div class="menu-stat-number"><?= $notInRooms?></div>
+              <div class="menu-stat-label">Not In Room</div>
             </div>
           </div>
           <button class="menu-button" onclick="window.location.href='display_dosen.php'">
