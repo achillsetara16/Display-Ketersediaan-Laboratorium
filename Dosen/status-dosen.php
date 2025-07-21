@@ -24,7 +24,7 @@ if (isset($_GET['get_data'])) {
                 )
             ) dp ON dp.user_id = u.id
             LEFT JOIN rooms r ON dp.room_id = r.id
-            WHERE u.role = 'dosen' AND u.id IN (1, 2)
+            WHERE u.role = 'dosen'
         ");
 
         $lecturers = $stmt->fetchAll(PDO::FETCH_ASSOC);
